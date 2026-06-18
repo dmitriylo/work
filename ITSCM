@@ -1244,7 +1244,7 @@
 <hr/>
 <h1>Графическая схема процесса</h1>
 <p>
-  <ac:structured-macro ac:macro-id="a428c267-3d7c-4487-b249-331f52847d98" ac:name="drawio" ac:schema-version="1">
+  <ac:structured-macro ac:macro-id="5889f96e-1a59-4b9e-ad65-cc0c15c8195a" ac:name="drawio" ac:schema-version="1">
     <ac:parameter ac:name="border">true</ac:parameter>
     <ac:parameter ac:name="diagramName">Управлениенепрерывностьютехнологий</ac:parameter>
     <ac:parameter ac:name="simpleViewer">false</ac:parameter>
@@ -1253,7 +1253,7 @@
     <ac:parameter ac:name="tbstyle">top</ac:parameter>
     <ac:parameter ac:name="lbox">true</ac:parameter>
     <ac:parameter ac:name="diagramWidth">3852</ac:parameter>
-    <ac:parameter ac:name="revision">5</ac:parameter>
+    <ac:parameter ac:name="revision">6</ac:parameter>
     <ac:parameter ac:name=""/>
   </ac:structured-macro>
 </p>
@@ -3545,9 +3545,8 @@
   <ac:parameter ac:name="title">Архитектурные паттерны резервирования и требования к резервному копированию</ac:parameter>
   <ac:rich-text-body>
     <p>Настоящий раздел определяет стандартные архитектурные паттерны резервирования ИТ-сервисов и требования к резервному копированию. Паттерны выбираются на этапе 1.3 «Определить способы резервирования» и фиксируются в DRP-плане сервиса. Требования к резервному копированию являются обязательными для включения в DRP-планы.</p>
-    <p><strong>Особенность:</strong> Требования адаптированы под облачную модель предоставления инфраструктуры (IaaS/PaaS). Все механизмы резервирования используют нативные средства облачного провайдера.</p>
-
-    <!-- ===== 1. АРХИТЕКТУРНЫЕ ПАТТЕРНЫ ===== -->
+    <p>
+      <strong>Особенность:</strong> Требования адаптированы под облачную модель предоставления инфраструктуры (IaaS/PaaS). Все механизмы резервирования используют нативные средства облачного провайдера.</p>
     <h3>1. Архитектурные паттерны резервирования</h3>
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 18.0%;"/> <col style="width: 32.0%;"/> <col style="width: 25.0%;"/> <col style="width: 25.0%;"/> </colgroup>
@@ -3561,32 +3560,39 @@
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: left;"><strong>Горячий резерв (Active-Active)</strong></td>
+          <td style="text-align: left;">
+            <strong>Горячий резерв (Active-Active)</strong>
+          </td>
           <td style="text-align: left;">Мультирегиональное развёртывание с глобальным балансировщиком (ELB). Нагрузка распределена между регионами облачного провайдера. При отказе одного региона — трафик автоматически переключается на второй.</td>
           <td style="text-align: left;">≤ 1 минута</td>
           <td style="text-align: left;">Mission Critical</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Тёплый резерв (Active-Passive)</strong></td>
+          <td style="text-align: left;">
+            <strong>Тёплый резерв (Active-Passive)</strong>
+          </td>
           <td style="text-align: left;">Основной регион активен, резервный — в режиме ожидания. Данные реплицируются асинхронно средствами облачного провайдера (RDS native replication) или восстанавливаются из снапшотов/бэкапов (ECS, OBS). При отказе — активация резервного региона через Terraform/API.</td>
           <td style="text-align: left;">≤ 1 часа</td>
           <td style="text-align: left;">Business Critical</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Холодный резерв (Backup & Restore)</strong></td>
+          <td style="text-align: left;">
+            <strong>Холодный резерв</strong>
+          </td>
           <td style="text-align: left;">Резервный регион не активен. Восстановление — из резервных копий (снапшоты ECS, бэкапы RDS) с использованием Terraform. Требует развёртывания инфраструктуры и восстановления данных.</td>
           <td style="text-align: left;">≥ 4 часов</td>
           <td style="text-align: left;">Business Operational</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Резервирование на уровне провайдера (SaaS/PaaS)</strong></td>
+          <td style="text-align: left;">
+            <strong>Резервирование на уровне провайдера (SaaS/PaaS)</strong>
+          </td>
           <td style="text-align: left;">Отказоустойчивость обеспечивается средствами облачного провайдера. DRP фокусируется на процедурах эскалации к провайдеру и контроле его SLA.</td>
           <td style="text-align: left;">По SLA провайдера</td>
           <td style="text-align: left;">PaaS/SaaS-сервисы</td>
         </tr>
       </tbody>
     </table>
-
     <h4>1.1. Критерии выбора паттерна</h4>
     <ol>
       <li>Определить класс критичности сервиса (из CMDB).</li>
@@ -3594,8 +3600,6 @@
       <li>Выбрать паттерн, достижимый RTO которого ≤ целевого RTO.</li>
       <li>Если стоимость выбранного паттерна превышает бюджет — эскалация на Архитектора ИТ и Владельца процесса. Варианты: пересмотр RTO с бизнесом, регистрация риска в Реестре рисков непрерывности, поэтапная модернизация.</li>
     </ol>
-
-    <!-- ===== 2. КЛАССИФИКАЦИЯ СУЩНОСТЕЙ ===== -->
     <h3>2. Классификация резервируемых сущностей</h3>
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 20.0%;"/> <col style="width: 40.0%;"/> <col style="width: 40.0%;"/> </colgroup>
@@ -3608,34 +3612,42 @@
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: left;"><strong>Базы данных (СУБД)</strong></td>
+          <td style="text-align: left;">
+            <strong>Базы данных (СУБД)</strong>
+          </td>
           <td style="text-align: left;">RDS (PostgreSQL, MS SQL, Oracle)</td>
           <td style="text-align: left;">Наиболее критичный тип. Требуется комбинация полных и инкрементальных бэкапов (RDS native backup) для минимизации RPO. Дополнительно — репликация (RDS native replication) для горячего/тёплого резерва.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Виртуальные машины</strong></td>
+          <td style="text-align: left;">
+            <strong>Виртуальные машины</strong>
+          </td>
           <td style="text-align: left;">ECS (IaaS)</td>
           <td style="text-align: left;">Полный снапшот ECS на уровне облачной платформы. Периодичность — в зависимости от частоты изменений конфигурации.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Конфигурации как код (IaC)</strong></td>
+          <td style="text-align: left;">
+            <strong>Конфигурации как код (IaC)</strong>
+          </td>
           <td style="text-align: left;">GitLab (Terraform, Ansible, Packer)</td>
           <td style="text-align: left;">Хранятся в Git (естественное версионирование). Дополнительный бэкап репозитория GitLab.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Файловые и объектные хранилища</strong></td>
+          <td style="text-align: left;">
+            <strong>Файловые и объектные хранилища</strong>
+          </td>
           <td style="text-align: left;">OBS (Object Storage)</td>
           <td style="text-align: left;">Репликация между регионами облачного провайдера (OBS cross-region replication).</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Образы контейнеров</strong></td>
+          <td style="text-align: left;">
+            <strong>Образы контейнеров</strong>
+          </td>
           <td style="text-align: left;">Nexus / Harbor</td>
           <td style="text-align: left;">Хранятся в Container Registry. Бэкап Registry. Возможность пересборки из исходного кода (Dockerfile).</td>
         </tr>
       </tbody>
     </table>
-
-    <!-- ===== 3. ТИПЫ БЭКАПОВ ===== -->
     <h3>3. Типы резервного копирования и требования</h3>
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 15.0%;"/> <col style="width: 35.0%;"/> <col style="width: 25.0%;"/> <col style="width: 25.0%;"/> </colgroup>
@@ -3649,39 +3661,42 @@
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: left;"><strong>Full backup</strong> (Полный)</td>
+          <td style="text-align: left;">
+            <strong>Full backup</strong> (Полный)</td>
           <td style="text-align: left;">Полная копия всех данных сущности на момент создания. Является базовой точкой восстановления.</td>
           <td style="text-align: left;">Все типы сущностей. Обязателен.</td>
           <td style="text-align: left;">Срок хранения — в зависимости от класса критичности (см. п. 4)</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Incremental backup</strong> (Инкрементальный)</td>
+          <td style="text-align: left;">
+            <strong>Incremental backup</strong> (Инкрементальный)</td>
           <td style="text-align: left;">Копия данных, изменившихся с момента последнего бэкапа. Минимизирует RPO и объём хранимых данных.</td>
           <td style="text-align: left;">СУБД (RDS native), файловые хранилища с интенсивными изменениями</td>
           <td style="text-align: left;">Хранится до следующего Full backup. Цепочка должна быть проверяемой.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Differential backup</strong> (Разностный)</td>
+          <td style="text-align: left;">
+            <strong>Differential backup</strong> (Разностный)</td>
           <td style="text-align: left;">Копия данных, изменившихся с момента последнего Full backup. Быстрее восстановление, чем у инкрементального.</td>
           <td style="text-align: left;">СУБД с умеренной интенсивностью изменений</td>
           <td style="text-align: left;">Хранится до следующего Full backup</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Transaction Log backup</strong> (Журнал транзакций)</td>
+          <td style="text-align: left;">
+            <strong>Transaction Log backup</strong> (Журнал транзакций)</td>
           <td style="text-align: left;">Копия журнала транзакций СУБД. Обеспечивает восстановление на конкретный момент времени (Point-in-Time Recovery).</td>
           <td style="text-align: left;">СУБД с высокими требованиями к RPO (Mission Critical, Business Critical)</td>
           <td style="text-align: left;">Минимум 7 дней для Point-in-Time Recovery</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Snapshot</strong> (Мгновенный снимок)</td>
+          <td style="text-align: left;">
+            <strong>Snapshot</strong> (Мгновенный снимок)</td>
           <td style="text-align: left;">Мгновенный снимок состояния ВМ или диска на уровне облачной платформы (ECS snapshot). Быстрое создание и восстановление.</td>
           <td style="text-align: left;">ECS перед обновлениями, СУБД (дополнение к логическому бэкапу)</td>
           <td style="text-align: left;">До 72 часов. Не заменяет полный бэкап.</td>
         </tr>
       </tbody>
     </table>
-
-    <!-- ===== 4. СРОКИ ХРАНЕНИЯ ===== -->
     <h3>4. Сроки хранения резервных копий</h3>
     <p>Периодичность создания бэкапов определяется Приложением 2 «Периодичность резервного копирования по типам сущностей».</p>
     <table class="wrapped relative-table" style="width: 100.0%;">
@@ -3696,33 +3711,39 @@
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: left;"><strong>Mission Critical</strong></td>
+          <td style="text-align: left;">
+            <strong>Mission Critical</strong>
+          </td>
           <td style="text-align: left;">30 дней (ежедневные). Доп.: 1 год (ежемесячные)</td>
           <td style="text-align: left;">7 дней</td>
           <td style="text-align: left;">✅ Обязательно. Копии в геораспределённом регионе облачного провайдера.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Business Critical</strong></td>
+          <td style="text-align: left;">
+            <strong>Business Critical</strong>
+          </td>
           <td style="text-align: left;">14 дней (ежедневные). Доп.: 6 месяцев (ежемесячные)</td>
           <td style="text-align: left;">7 дней</td>
           <td style="text-align: left;">✅ Рекомендовано. Копии в другом регионе облачного провайдера. Без него — риск.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Business Operational</strong></td>
+          <td style="text-align: left;">
+            <strong>Business Operational</strong>
+          </td>
           <td style="text-align: left;">7 дней (ежедневные)</td>
           <td style="text-align: left;">Не обязательно</td>
           <td style="text-align: left;">❌ Не требуется</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Office Production</strong></td>
+          <td style="text-align: left;">
+            <strong>Office Production</strong>
+          </td>
           <td style="text-align: left;">7 дней (еженедельные)</td>
           <td style="text-align: left;">Не обязательно</td>
           <td style="text-align: left;">❌ Не требуется</td>
         </tr>
       </tbody>
     </table>
-
-    <!-- ===== 5. ПРОВЕРКА ЦЕЛОСТНОСТИ ===== -->
     <h3>5. Требования к проверке целостности резервных копий</h3>
     <p>Резервная копия, целостность которой не проверена, считается отсутствующей.</p>
     <table class="wrapped relative-table" style="width: 100.0%;">
@@ -3736,32 +3757,39 @@
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: left;"><strong>Автоматическая верификация</strong></td>
+          <td style="text-align: left;">
+            <strong>Автоматическая верификация</strong>
+          </td>
           <td style="text-align: left;">После каждого создания бэкапа</td>
           <td style="text-align: left;">Проверка контрольной суммы (хеша) средствами облачного провайдера. При несовпадении — алерт и повторное создание.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Тестовое восстановление</strong></td>
+          <td style="text-align: left;">
+            <strong>Тестовое восстановление</strong>
+          </td>
           <td style="text-align: left;">Не реже 1 раза в квартал (MC), 1 раза в полгода (BC)</td>
           <td style="text-align: left;">Развёртывание бэкапа в изолированной облачной подсети. Smoke-тесты. Результаты в ITSM.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>DRP-тестирование</strong></td>
+          <td style="text-align: left;">
+            <strong>DRP-тестирование</strong>
+          </td>
           <td style="text-align: left;">Не реже 1 раза в год (в рамках учений)</td>
           <td style="text-align: left;">Полное восстановление сервиса из бэкапа в резервном регионе в рамках Этапа 3.</td>
         </tr>
       </tbody>
     </table>
-
-    <p><strong>Документирование результатов проверки:</strong> Контроль успешности резервного копирования обеспечивается на трёх уровнях:</p>
+    <p>
+      <strong>Документирование результатов проверки:</strong> Контроль успешности резервного копирования обеспечивается на трёх уровнях:</p>
     <ol>
-      <li><strong>Автоматический лог:</strong> Облачная платформа формирует запись в лог-файле (дата/время, ID, объём, результат). Логи централизованно собираются и защищены от удаления.</li>
-      <li><strong>Автоматический алерт:</strong> При неудаче — алерт ответственному Техническому специалисту. Время реакции — не более 1 часа в рабочее время.</li>
-      <li><strong>Тикет в ITSM:</strong> Если сбой не устранён за 4 часа — регистрируется инцидент по регламенту «Управление технологическими инцидентами».</li>
+      <li>
+        <strong>Автоматический лог:</strong> Облачная платформа формирует запись в лог-файле (дата/время, ID, объём, результат). Логи централизованно собираются и защищены от удаления.</li>
+      <li>
+        <strong>Автоматический алерт:</strong> При неудаче — алерт ответственному Техническому специалисту. Время реакции — не более 1 часа в рабочее время.</li>
+      <li>
+        <strong>Тикет в ITSM:</strong> Если сбой не устранён за 4 часа — регистрируется инцидент по регламенту «Управление технологическими инцидентами».</li>
     </ol>
     <p>Ежемесячный отчёт формируется автоматически на основе данных мониторинга. Ведение отдельного Журнала контроля в ручном режиме не требуется.</p>
-
-    <!-- ===== 6. ПРАВИЛА ВОССТАНОВЛЕНИЯ ===== -->
     <h3>6. Правила восстановления из резервной копии</h3>
     <p>Процедуры восстановления для каждого типа сущности должны быть документированы в DRP-плане (раздел «Процедуры восстановления»). Настоящий раздел устанавливает общие правила.</p>
     <table class="wrapped relative-table" style="width: 100.0%;">
@@ -3775,29 +3803,35 @@
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: left;"><strong>Очерёдность восстановления</strong></td>
+          <td style="text-align: left;">
+            <strong>Очерёдность восстановления</strong>
+          </td>
           <td style="text-align: left;">1. Сеть и аутентификация (DNS, AD, SSO)<br/>2. Базы данных (RDS)<br/>3. Серверы приложений (ECS)<br/>4. Балансировщики (ELB)<br/>5. Вспомогательные сервисы</td>
           <td style="text-align: left;">Фиксируется в DRP-плане. Проверяется на учениях.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Point-in-Time Recovery</strong></td>
+          <td style="text-align: left;">
+            <strong>Point-in-Time Recovery</strong>
+          </td>
           <td style="text-align: left;">Для RDS — возможность восстановления на конкретный момент времени в пределах срока хранения журналов транзакций.</td>
           <td style="text-align: left;">Проверяется при тестовом восстановлении</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Запрет «поверх» продуктивных данных</strong></td>
+          <td style="text-align: left;">
+            <strong>Запрет «поверх» продуктивных данных</strong>
+          </td>
           <td style="text-align: left;">При восстановлении запрещается запись поверх существующих данных без предварительного снапшота (ECS snapshot) или бэкапа текущего состояния.</td>
           <td style="text-align: left;">Контролируется Техническим специалистом. Нарушение — инцидент.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Изолированное тестовое восстановление</strong></td>
+          <td style="text-align: left;">
+            <strong>Изолированное тестовое восстановление</strong>
+          </td>
           <td style="text-align: left;">Тестовое восстановление выполняется в изолированной облачной подсети без сетевого доступа к продуктивной среде.</td>
           <td style="text-align: left;">Проверка сетевой изоляции (Security Group) перед тестом</td>
         </tr>
       </tbody>
     </table>
-
-    <!-- ===== 7. ГЕОРЕЗЕРВИРОВАНИЕ ===== -->
     <h3>7. Требования к георезервированию</h3>
     <p>Для ИТ-сервисов класса <strong>Mission Critical</strong> георезервирование (размещение в геораспределённом регионе облачного провайдера) обязательно. Для <strong>Business Critical</strong> — рекомендовано. При отсутствии — риск регистрируется в Реестре рисков непрерывности.</p>
     <table class="wrapped relative-table" style="width: 100.0%;">
@@ -3832,10 +3866,8 @@
         </tr>
       </tbody>
     </table>
-
     <h4>7.1. Предотвращение Split-Brain при георезервировании</h4>
     <p>Для систем класса Mission Critical с активным или полуактивным георезервированием (Active-Active / Active-Passive) существует критический архитектурный риск — <strong>Split-Brain</strong> (ситуация, когда оба региона изолируются друг от друга, считают себя активными и начинают одновременно записывать данные, порождая рассинхронизацию). Настоящий раздел определяет обязательные меры предотвращения и процедуры разрешения Split-Brain.</p>
-
     <h4>7.1.1. Обязательные механизмы предотвращения</h4>
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 25.0%;"/> <col style="width: 40.0%;"/> <col style="width: 35.0%;"/> </colgroup>
@@ -3848,49 +3880,56 @@
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: left;"><strong>Witness / Arbiter Node (Кворум)</strong></td>
+          <td style="text-align: left;">
+            <strong>Witness / Arbiter Node (Кворум)</strong>
+          </td>
           <td style="text-align: left;">Третья, независимая нода (облачная, в отдельном регионе), которая участвует в голосовании при потере связи между регионами. Регион, потерявший связь с Witness, автоматически переводится в режим «только чтение» или останавливает запись.</td>
           <td style="text-align: left;">Обязательно для Mission Critical с Active-Active</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Fencing (Изоляция)</strong></td>
+          <td style="text-align: left;">
+            <strong>Fencing (Изоляция)</strong>
+          </td>
           <td style="text-align: left;">Механизм принудительной изоляции «потерянного» региона: отключение сетевых интерфейсов через API облачного провайдера, остановка RDS, снятие IP-адресов с ELB. Выполняется автоматически при обнаружении Split-Brain.</td>
           <td style="text-align: left;">Обязательно для Mission Critical. Рекомендовано для Business Critical.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Quorum-based Replication</strong></td>
+          <td style="text-align: left;">
+            <strong>Quorum-based Replication</strong>
+          </td>
           <td style="text-align: left;">Репликация данных, при которой запись подтверждается только при получении подтверждения от большинства узлов (quorum). При Split-Brain ни одна из сторон не может достичь кворума самостоятельно — запись прекращается.</td>
           <td style="text-align: left;">Обязательно для RDS класса Mission Critical</td>
         </tr>
       </tbody>
     </table>
-
     <h4>7.1.2. Процедуры разрешения Split-Brain</h4>
     <p>DRP-план каждого критичного сервиса с георезервированием должен содержать пошаговые процедуры разрешения Split-Brain. Процедуры включают:</p>
     <ol>
-      <li><strong>Обнаружение:</strong> Система мониторинга фиксирует потерю связи между регионами и/или отсутствие кворума. Алерт уровня «Critical» направляется Координатору DRP.</li>
-      <li><strong>Оценка состояния:</strong> Координатор DRP определяет, какой регион содержит наиболее актуальные данные (по номеру последней транзакции RDS, временной метке репликации OBS).</li>
-      <li><strong>Выбор источника истины (Source of Truth):</strong> Решение о том, какой регион становится источником истины, принимается Координатором DRP совместно с Архитектором сервиса. Критерии: актуальность данных, доступность ресурсов, время восстановления.</li>
-      <li><strong>Изоляция проигравшего региона:</strong> Проигравший регион принудительно изолируется (Fencing) до полного разрешения конфликта.</li>
-      <li><strong>Разрешение конфликтов данных:</strong> После восстановления связи выполняется процедура разрешения конфликтов (Conflict Resolution):<ul>
+      <li>
+        <strong>Обнаружение:</strong> Система мониторинга фиксирует потерю связи между регионами и/или отсутствие кворума. Алерт уровня «Critical» направляется Координатору DRP.</li>
+      <li>
+        <strong>Оценка состояния:</strong> Координатор DRP определяет, какой регион содержит наиболее актуальные данные (по номеру последней транзакции RDS, временной метке репликации OBS).</li>
+      <li>
+        <strong>Выбор источника истины (Source of Truth):</strong> Решение о том, какой регион становится источником истины, принимается Координатором DRP совместно с Архитектором сервиса. Критерии: актуальность данных, доступность ресурсов, время восстановления.</li>
+      <li>
+        <strong>Изоляция проигравшего региона:</strong> Проигравший регион принудительно изолируется (Fencing) до полного разрешения конфликта.</li>
+      <li>
+        <strong>Разрешение конфликтов данных:</strong> После восстановления связи выполняется процедура разрешения конфликтов (Conflict Resolution):<ul>
           <li>Для RDS: использование встроенных механизмов (CRDT, Last-Write-Wins) или ручное разрешение конфликтов администратором БД.</li>
           <li>Для OBS: сравнение контрольных сумм, восстановление из бэкапа проигравшей стороны.</li>
         </ul>
       </li>
-      <li><strong>Восстановление репликации:</strong> После разрешения конфликтов репликация восстанавливается. Проигравший регион синхронизируется с источником истины.</li>
+      <li>
+        <strong>Восстановление репликации:</strong> После разрешения конфликтов репликация восстанавливается. Проигравший регион синхронизируется с источником истины.</li>
     </ol>
-
     <h4>7.1.3. Тестирование Split-Brain сценария</h4>
     <ul>
       <li>Сценарий Split-Brain включается в план учений (Этап 3) для всех систем с георезервированием.</li>
       <li>Тестирование проводится не реже одного раза в год для Mission Critical систем.</li>
       <li>Результаты тестирования фиксируются в протоколе учений. При выявлении отклонений — корректирующие мероприятия (шаг 3.4).</li>
     </ul>
-
-    <!-- ===== 8. ЗАЩИТА ОТ ШИФРОВАЛЬЩИКОВ ===== -->
     <h3>8. Защита резервных копий от шифровальщиков (Ransomware Protection)</h3>
     <p>Злоумышленники в первую очередь пытаются уничтожить или зашифровать резервные копии, чтобы сделать восстановление невозможным. Настоящий раздел определяет обязательные меры защиты.</p>
-
     <h4>8.1. Изолированный логический контур (Immutable Vault)</h4>
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 25.0%;"/> <col style="width: 35.0%;"/> <col style="width: 40.0%;"/> </colgroup>
@@ -3903,41 +3942,45 @@
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: left;"><strong>Mission Critical</strong></td>
+          <td style="text-align: left;">
+            <strong>Mission Critical</strong>
+          </td>
           <td style="text-align: left;">Обязательно. Резервные копии хранятся в изолированном логическом контуре (Immutable Vault). Невозможность удаления или модификации бэкапов из продуктивной среды (WORM — Write Once, Read Many). Отдельный backup-аккаунт облачного провайдера с блокировкой удаления.</td>
           <td style="text-align: left;">Реализация: OBS с включённым режимом Immutable (Object Lock), отдельный проект/аккаунт в облаке для бэкапов.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Business Critical</strong></td>
+          <td style="text-align: left;">
+            <strong>Business Critical</strong>
+          </td>
           <td style="text-align: left;">Рекомендовано. При отсутствии — риск регистрируется в Реестре рисков непрерывности.</td>
           <td style="text-align: left;">Минимально: отдельная облачная подсеть (VPC/Subnet) с жёсткими правилами Security Group и Network ACL.</td>
         </tr>
         <tr>
-          <td style="text-align: left;"><strong>Business Operational</strong></td>
+          <td style="text-align: left;">
+            <strong>Business Operational</strong>
+          </td>
           <td style="text-align: left;">Рекомендовано. Минимально: хранение бэкапов в отдельном бакете OBS, не входящем в общий проект.</td>
           <td style="text-align: left;">—</td>
         </tr>
       </tbody>
     </table>
-
     <h4>8.2. Изоляция учётных записей администраторов резервного копирования</h4>
     <ul>
       <li>Учётные записи администраторов систем резервного копирования <strong>не должны</strong> состоять в общем домене Active Directory.</li>
       <li>Доступ к управлению бэкапами осуществляется через выделенный облачный аккаунт (IAM) с ограниченными правами, отдельный от продуктивного.</li>
       <li>Права на удаление резервных копий предоставляются только ограниченному кругу лиц и требуют дополнительного подтверждения (двухфакторная авторизация, Break-Glass-процедура).</li>
     </ul>
-
     <h4>8.3. Проверка резервных копий на вредоносное ПО</h4>
     <p>Восстановление из бэкапа, который уже содержит внедрённое вредоносное ПО (закладочную малварь), приводит к повторной компрометации. При тестовом восстановлении (раздел 5) обязательно:</p>
     <ul>
-      <li><strong>Антивирусное сканирование:</strong> Развёрнутая из бэкапа тестовая среда подлежит обязательному сканированию согласованными средствами КБ (антивирус, EDR, песочница) до подключения к сети.</li>
-      <li><strong>Проверка целостности:</strong> Сравнение контрольных сумм критичных файлов (системные библиотеки, конфигурации) с эталонными значениями, сохранёнными отдельно от бэкапов.</li>
-      <li><strong>Изолированная песочница (Sandbox):</strong> Тестовое восстановление Mission Critical систем выполняется в изолированной облачной подсети без доступа к продуктивной сети до полного завершения сканирования.</li>
+      <li>
+        <strong>Антивирусное сканирование:</strong> Развёрнутая из бэкапа тестовая среда подлежит обязательному сканированию согласованными средствами КБ (антивирус, EDR, песочница) до подключения к сети.</li>
+      <li>
+        <strong>Проверка целостности:</strong> Сравнение контрольных сумм критичных файлов (системные библиотеки, конфигурации) с эталонными значениями, сохранёнными отдельно от бэкапов.</li>
+      <li>
+        <strong>Изолированная песочница (Sandbox):</strong> Тестовое восстановление Mission Critical систем выполняется в изолированной облачной подсети без доступа к продуктивной сети до полного завершения сканирования.</li>
     </ul>
-
-    <!-- ===== 9. ТРЕБОВАНИЯ ИБ ===== -->
     <h3>9. Требования информационной безопасности к резервному копированию</h3>
-
     <h4>9.1. Шифрование резервных копий</h4>
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 25.0%;"/> <col style="width: 35.0%;"/> <col style="width: 40.0%;"/> </colgroup>
@@ -3966,27 +4009,23 @@
         </tr>
       </tbody>
     </table>
-
     <h4>9.2. Контроль доступа к резервным копиям</h4>
     <ul>
       <li>Доступ — только авторизованному персоналу. Права пересматриваются ежеквартально.</li>
-      <li><strong>Принцип разделения полномочий:</strong> создающий бэкап не имеет прав на удаление.</li>
+      <li>
+        <strong>Принцип разделения полномочий:</strong> создающий бэкап не имеет прав на удаление.</li>
       <li>Все операции (создание, восстановление, удаление) логируются средствами облачного провайдера (CloudTrail/аналог). Логи защищены от модификации.</li>
     </ul>
-
     <h4>9.3. Защита каналов передачи</h4>
     <ul>
       <li>Передача резервных копий между регионами облачного провайдера осуществляется по внутренним защищённым каналам провайдера.</li>
       <li>При передаче через внешние сети — обязательное шифрование канала (TLS 1.2+, VPN).</li>
     </ul>
-
     <h4>9.4. Уничтожение резервных копий</h4>
     <ul>
       <li>По истечении срока хранения — уничтожение без возможности восстановления (перезапись, криптографическое уничтожение ключей KMS).</li>
       <li>Факт уничтожения фиксируется в логах облачного провайдера. Для конфиденциальных данных — акт уничтожения (по требованию ДКБ).</li>
     </ul>
-
-    <!-- ===== 10. КРИТЕРИИ КАЧЕСТВА ===== -->
     <h3>10. Критерии качества резервного копирования</h3>
     <ul>
       <li>Для 100% критичных ИТ-сервисов (Mission Critical, Business Critical) настроено резервное копирование в соответствии с DRP-планом.</li>
@@ -3995,7 +4034,6 @@
       <li>Не зафиксировано случаев восстановления «поверх» продуктивных данных без предварительного снапшота.</li>
       <li>Сроки хранения бэкапов соответствуют таблице п. 4. Не зафиксировано преждевременного удаления.</li>
     </ul>
-
   </ac:rich-text-body>
 </ac:structured-macro>
 <ac:structured-macro ac:macro-id="threat-model-block-v2" ac:name="expand" ac:schema-version="1">
