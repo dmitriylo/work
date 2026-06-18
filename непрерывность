@@ -12,7 +12,7 @@
       </ac:link>
     </p>
     <p>
-      <strong>Менеджер процесса:</strong> <ac:link>
+      <strong>Владелец АС:</strong> <ac:link>
         <ri:user ri:userkey="placeholder-manager"/>
       </ac:link>
     </p>
@@ -38,7 +38,7 @@
             <tr>
               <td>1.0</td>
               <td>17.06.2026</td>
-              <td>Менеджер процесса</td>
+              <td>Владелец АС</td>
               <td>Первоначальная редакция. Формализация процесса управления непрерывностью технологий в соответствии со Стандартом Общества. Интеграция требований ISO 22301 и ITIL v4 ITSCM.</td>
             </tr>
           </tbody>
@@ -83,7 +83,7 @@
           <td style="text-align: left;vertical-align: top;">
             <strong>Чрезвычайная ситуация (ЧС)</strong>
           </td>
-          <td style="text-align: left;">Обстановка на определённой территории, сложившаяся в результате аварии, опасного природного явления, катастрофы, распространения заболевания, кибератаки или иного бедствия, которая может повлечь или повлекла за собой нарушение условий нормального функционирования ИТ-сервисов.</td>
+          <td style="text-align: left;">Обстановка на определённой территории, сложившаяся в результате аварии, катастрофы,  кибератаки или иного бедствия, которая может повлечь или повлекла за собой нарушение условий нормального функционирования ИТ-сервисов.</td>
         </tr>
         <tr>
           <td style="text-align: left;vertical-align: top;">
@@ -132,6 +132,13 @@
           </td>
           <td style="text-align: left;">Максимально допустимый период простоя — предельное время, в течение которого ИТ-сервис может оставаться недоступным без катастрофических последствий для бизнеса. Используется для приоритизации восстановительных работ.</td>
         </tr>
+        <tr>
+          <td style="text-align: left;vertical-align: top;">
+            <strong>DR-SLA</strong> <br/>
+            <em>(Disaster Recovery SLA)</em>
+          </td>
+          <td style="text-align: left;">Согласованные с бизнесом параметры обслуживания ИТ-сервиса в режиме аварийного восстановления. В отличие от стандартного SLA, DR-SLA допускает деградацию сервиса на время, не превышающее RTO. Фиксируется в SLA-документации для каждого критичного ИТ-сервиса. Стандартный SLA не приостанавливается в одностороннем порядке — вместо этого активируется режим DR-SLA.</td>
+        </tr>
         <tr style="background-color: rgb(244,245,247);">
           <td colspan="2" style="text-align: left;">
             <strong>Роли процесса</strong>
@@ -139,15 +146,15 @@
         </tr>
         <tr>
           <td style="text-align: left;vertical-align: top;">
-            <strong>Координатор процесса</strong>
+            <strong>Владелец АС</strong>
           </td>
-          <td style="text-align: left;">Сотрудник, ответственный за координацию и качественное выполнение работ по процессу непрерывности в зоне своей ответственности. Контролирует наличие и актуальность планов ОНиВД.</td>
+          <td style="text-align: left;">Сотрудник, несущий сквозную ответственность за ИТ-сервис. Согласовывает DRP-план, обеспечивает готовность подразделения к ЧС, организует резервирование критичных функций.</td>
         </tr>
         <tr>
           <td style="text-align: left;vertical-align: top;">
-            <strong>Менеджер сервиса (Service Owner)</strong>
+            <strong>Координатор DRP</strong>
           </td>
-          <td style="text-align: left;">Сотрудник, несущий сквозную ответственность за ИТ-сервис. Согласовывает DRP-план, обеспечивает готовность подразделения к ЧС, организует резервирование критичных функций.</td>
+          <td style="text-align: left;">Руководитель восстановительных работ, назначенный из числа участников восстановительной команды. Берёт на себя техническое управление восстановлением ИТ-сервиса при активации DRP-плана (Этап 5). Контролирует хронометраж выполнения процедур, принимает решения об эскалации при невозможности достижения RTO. Не подменяет Координатора ВПИ — коммуникация с бизнесом и клиентами осуществляется параллельно через процесс управления инцидентами.</td>
         </tr>
         <tr>
           <td style="text-align: left;vertical-align: top;">
@@ -218,7 +225,7 @@
           <td style="text-align: center;vertical-align: middle;">
             <strong>Принцип регулярного тестирования</strong>
           </td>
-          <td style="text-align: left;">Планы ОНиВД и DRP подлежат обязательному тестированию не реже одного раза в год. Результаты учений документируются, отклонения анализируются, корректирующие мероприятия планируются и контролируются.</td>
+          <td style="text-align: left;">Планы ОНиВД и DRP подлежат обязательному тестированию. Периодичность зависит от класса критичности: Mission Critical — не реже 1 раза в квартал (Tabletop или Component Test) и не реже 1 раза в год (Full-Scale); Business Critical — не реже 1 раза в год. Результаты учений документируются, отклонения анализируются, корректирующие мероприятия планируются и контролируются.</td>
         </tr>
         <tr>
           <td style="text-align: center;vertical-align: middle;">
@@ -275,7 +282,7 @@
         </tr>
         <tr>
           <td style="text-align: left;">
-            <strong>Менеджер процесса</strong>
+            <strong>Владелец АС</strong>
           </td>
           <td style="text-align: left;">Осуществляет операционный и методологический контроль над процессом.</td>
           <td style="text-align: left;">
@@ -286,6 +293,8 @@
               <li>Планирование учений и контроль готовности;</li>
               <li>Подготовка консолидированной отчётности по отклонениям;</li>
               <li>Организация обучения сотрудников.</li>
+              <li>Координация работ по процессу непрерывности;</li>
+              <li>Контроль за наличием и актуальностью плана ОНиВД.</li>
             </ul>
           </td>
           <td style="text-align: left;">
@@ -293,32 +302,15 @@
               <li>Осуществлять выборочный оперативный контроль;</li>
               <li>Инициировать внеплановые учения;</li>
               <li>Требовать исполнения положений регламента.</li>
+              <li>Запрашивать информацию о готовности восстановительных команд;</li>
+              <li>Инициировать эскалацию при отсутствии актуального DRP.</li>
             </ul>
           </td>
           <td style="text-align: left;">Назначается приказом</td>
         </tr>
         <tr>
           <td style="text-align: left;">
-            <strong>Координатор процесса</strong>
-          </td>
-          <td style="text-align: left;">Обеспечивает координацию и качественное выполнение работ по процессу в зоне своей ответственности.</td>
-          <td style="text-align: left;">
-            <ul>
-              <li>Координация работ по процессу непрерывности;</li>
-              <li>Контроль за наличием и актуальностью плана ОНиВД.</li>
-            </ul>
-          </td>
-          <td style="text-align: left;">
-            <ul>
-              <li>Запрашивать информацию о готовности восстановительных команд;</li>
-              <li>Инициировать эскалацию при отсутствии актуального DRP.</li>
-            </ul>
-          </td>
-          <td style="text-align: left;">Назначается на уровне ДЗО</td>
-        </tr>
-        <tr>
-          <td style="text-align: left;">
-            <strong>Менеджер сервиса (Service Owner)</strong>
+            <strong>Владелец АС</strong>
           </td>
           <td style="text-align: left;">Несёт сквозную ответственность за ИТ-сервис и его готовность к восстановлению после ЧС.</td>
           <td style="text-align: left;">
@@ -341,6 +333,29 @@
         </tr>
         <tr>
           <td style="text-align: left;">
+            <strong>Координатор DRP</strong>
+          </td>
+          <td style="text-align: left;">Руководитель восстановительных работ, назначенный из числа участников восстановительной команды. При активации DRP-плана берёт на себя техническое управление восстановлением ИТ-сервиса.</td>
+          <td style="text-align: left;">
+            <ul>
+              <li>За выполнение пошаговых процедур DRP-плана (шаг 5.5);</li>
+              <li>За контроль хронометража и достижение целевого RTO;</li>
+              <li>За верификацию восстановления (шаг 5.6);</li>
+              <li>За выполнение возврата к штатному режиму (шаг 5.7);</li>
+              <li>За принятие решений об эскалации при невозможности достижения RTO.</li>
+            </ul>
+          </td>
+          <td style="text-align: left;">
+            <ul>
+              <li>Принимать решения о порядке выполнения процедур восстановления;</li>
+              <li>Запрашивать дополнительные ресурсы через Менеджера процесса; </li>
+              <li>Инициировать эскалацию при угрозе недостижения RTO (3 уровня эскалации, см. Этап 5).</li>
+            </ul>
+          </td>
+          <td style="text-align: left;">Назначается Менеджером сервиса из числа участников восстановительной команды</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">
             <strong>Участник восстановительной команды</strong>
           </td>
           <td style="text-align: left;">Сотрудник, включённый в состав восстановительной команды и выполняющий функции по резервированию при ЧС.</td>
@@ -357,7 +372,7 @@
               <li>Сообщать о невозможности выполнения функций.</li>
             </ul>
           </td>
-          <td style="text-align: left;">Назначается Менеджером сервиса</td>
+          <td style="text-align: left;">Назначается Владельцем АС</td>
         </tr>
       </tbody>
     </table>
@@ -366,17 +381,18 @@
     </p>
     <p>Настоящая матрица регламентирует распределение зон ответственности и ролей на каждом шаге процесса управления непрерывностью.</p>
     <table class="relative-table wrapped" style="width: 100.0%;">
-      <colgroup> <col style="width: 30.0%;"/> <col style="width: 10.0%;"/> <col style="width: 10.0%;"/> <col style="width: 10.0%;"/> <col style="width: 10.0%;"/> <col style="width: 10.0%;"/> <col style="width: 10.0%;"/> <col style="width: 10.0%;"/> </colgroup>
+      <colgroup> <col style="width: 25.0%;"/> <col style="width: 9.0%;"/> <col style="width: 9.0%;"/> <col style="width: 9.0%;"/> <col style="width: 9.0%;"/> <col style="width: 9.0%;"/> <col style="width: 9.0%;"/> <col style="width: 9.0%;"/> <col style="width: 12.0%;"/> </colgroup>
       <thead>
         <tr style="background-color: rgb(244,245,247);">
           <th style="text-align: left;">Шаг процесса</th>
           <th style="text-align: center;">Владелец процесса</th>
-          <th style="text-align: center;">Менеджер процесса</th>
-          <th style="text-align: center;">Координатор</th>
-          <th style="text-align: center;">Менеджер сервиса</th>
-          <th style="text-align: center;">DRP Commander</th>
+          <th style="text-align: center;">Владелец АС</th>
+          <th style="text-align: center;">ИТ ИТ Архитектор</th>
+          <th style="text-align: center;">Владелец АС</th>
+          <th style="text-align: center;">Координатор DRP</th>
           <th style="text-align: center;">Участник ВК</th>
           <th style="text-align: center;">CISO / ДКБ</th>
+          <th style="text-align: center;">Директор по ИТ</th>
         </tr>
       </thead>
       <tbody>
@@ -384,18 +400,31 @@
           <td>1.1 Актуализировать модель угроз</td>
           <td style="text-align: center;">A</td>
           <td style="text-align: center;">R</td>
+          <td style="text-align: center;">C</td>
           <td style="text-align: center;">I</td>
-          <td style="text-align: center;">C</td>
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">C</td>
+          <td style="text-align: center;">-</td>
         </tr>
         <tr>
-          <td>1.2 Определить критичные ИТ-сервисы</td>
+          <td>1.2 Определить критичные ИТ-сервисы и RTO/RPO</td>
           <td style="text-align: center;">A</td>
+          <td style="text-align: center;">C</td>
           <td style="text-align: center;">R</td>
+          <td style="text-align: center;">C</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+          <td>1.3 Определить способы резервирования</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">C</td>
+          <td style="text-align: center;">R</td>
+          <td style="text-align: center;">C</td>
+          <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
@@ -409,19 +438,32 @@
           <td style="text-align: center;">C</td>
           <td style="text-align: center;">C</td>
           <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
         </tr>
         <tr>
           <td>2.2 Согласовать DRP-план</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">A</td>
-          <td style="text-align: center;">I</td>
+          <td style="text-align: center;">C</td>
           <td style="text-align: center;">R</td>
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">C</td>
+          <td style="text-align: center;">-</td>
         </tr>
         <tr>
-          <td>3.1 Подготовить сценарий учений</td>
+          <td>2.3 Актуализировать план ОНиВД</td>
+          <td style="text-align: center;">I</td>
+          <td style="text-align: center;">RA</td>
+          <td style="text-align: center;">C</td>
+          <td style="text-align: center;">I</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+          <td>3.1 Подготовить сценарий и провести учения</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">RA</td>
           <td style="text-align: center;">C</td>
@@ -429,15 +471,6 @@
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-          <td>3.2 Провести учения</td>
-          <td style="text-align: center;">I</td>
-          <td style="text-align: center;">RA</td>
-          <td style="text-align: center;">C</td>
-          <td style="text-align: center;">C</td>
-          <td style="text-align: center;">C</td>
-          <td style="text-align: center;">R</td>
           <td style="text-align: center;">-</td>
         </tr>
         <tr>
@@ -446,22 +479,13 @@
           <td style="text-align: center;">RA</td>
           <td style="text-align: center;">C</td>
           <td style="text-align: center;">C</td>
-          <td style="text-align: center;">C</td>
+          <td style="text-align: center;">-</td>
           <td style="text-align: center;">I</td>
+          <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
         </tr>
         <tr>
-          <td>4.1 Поддерживать списки команд</td>
-          <td style="text-align: center;">I</td>
-          <td style="text-align: center;">A</td>
-          <td style="text-align: center;">R</td>
-          <td style="text-align: center;">C</td>
-          <td style="text-align: center;">-</td>
-          <td style="text-align: center;">I</td>
-          <td style="text-align: center;">-</td>
-        </tr>
-        <tr>
-          <td>4.2 Поддерживать актуальность DRP</td>
+          <td>3.4 Устранить отклонения</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">A</td>
           <td style="text-align: center;">C</td>
@@ -469,38 +493,70 @@
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
         </tr>
-        <tr style="background-color: rgb(222,235,255);">
-          <td>5.1 Объявить ЧС</td>
-          <td style="text-align: center;">C</td>
+        <tr>
+          <td>4.1 Поддерживать актуальность списков команд</td>
           <td style="text-align: center;">I</td>
-          <td style="text-align: center;">-</td>
-          <td style="text-align: center;">-</td>
-          <td style="text-align: center;">-</td>
-          <td style="text-align: center;">-</td>
           <td style="text-align: center;">RA</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">C</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">I</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
+        </tr>
+        <tr>
+          <td>4.2 Поддерживать актуальность DRP при изменениях</td>
+          <td style="text-align: center;">I</td>
+          <td style="text-align: center;">A</td>
+          <td style="text-align: center;">C</td>
+          <td style="text-align: center;">R</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
         </tr>
         <tr style="background-color: rgb(222,235,255);">
+          <td>
+            <strong>5.1 Объявить ЧС</strong>
+          </td>
+          <td style="text-align: center;">
+            <strong>A</strong>
+          </td>
+          <td style="text-align: center;">I</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">R*</td>
+          <td style="text-align: center;">
+            <strong>R</strong>
+          </td>
+        </tr>
+        <tr>
           <td>5.2 Созвать Антикризисный Штаб</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">RA</td>
-          <td style="text-align: center;">C</td>
+          <td style="text-align: center;">-</td>
+          <td style="text-align: center;">I</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">I</td>
         </tr>
-        <tr style="background-color: rgb(222,235,255);">
+        <tr>
           <td>5.3 Выбрать и активировать DRP</td>
           <td style="text-align: center;">I</td>
-          <td style="text-align: center;">A</td>
+          <td style="text-align: center;">RA</td>
           <td style="text-align: center;">C</td>
-          <td style="text-align: center;">R</td>
+          <td style="text-align: center;">C</td>
           <td style="text-align: center;">R</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
         </tr>
-        <tr style="background-color: rgb(222,235,255);">
+        <tr>
           <td>5.4 Информировать КБ</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">R</td>
@@ -509,8 +565,9 @@
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">I</td>
+          <td style="text-align: center;">-</td>
         </tr>
-        <tr style="background-color: rgb(222,235,255);">
+        <tr>
           <td>5.5 Выполнить процедуры DRP</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">A</td>
@@ -519,9 +576,10 @@
           <td style="text-align: center;">R</td>
           <td style="text-align: center;">R</td>
           <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
         </tr>
-        <tr style="background-color: rgb(222,235,255);">
-          <td>5.6 Верифицировать восстановление</td>
+        <tr>
+          <td>5.6 Подтвердить восстановление</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">A</td>
           <td style="text-align: center;">-</td>
@@ -529,26 +587,29 @@
           <td style="text-align: center;">R</td>
           <td style="text-align: center;">C</td>
           <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
         </tr>
-        <tr style="background-color: rgb(222,235,255);">
-          <td>5.7 Возврат к штатному режиму</td>
+        <tr>
+          <td>5.7 Выполнить возврат к штатному режиму</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">A</td>
           <td style="text-align: center;">-</td>
-          <td style="text-align: center;">R</td>
           <td style="text-align: center;">C</td>
           <td style="text-align: center;">R</td>
+          <td style="text-align: center;">R</td>
+          <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
         </tr>
-        <tr style="background-color: rgb(222,235,255);">
+        <tr>
           <td>5.8 Провести пост-анализ (PIR)</td>
           <td style="text-align: center;">I</td>
-          <td style="text-align: center;">RA</td>
+          <td style="text-align: center;">A</td>
           <td style="text-align: center;">C</td>
-          <td style="text-align: center;">C</td>
+          <td style="text-align: center;">R</td>
           <td style="text-align: center;">C</td>
           <td style="text-align: center;">I</td>
           <td style="text-align: center;">I</td>
+          <td style="text-align: center;">-</td>
         </tr>
         <tr>
           <td>6. Контроль и совершенствование</td>
@@ -559,26 +620,588 @@
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
           <td style="text-align: center;">-</td>
+          <td style="text-align: center;">-</td>
         </tr>
       </tbody>
     </table>
     <p>
+      <strong>Примечание к шагу 5.1:</strong>
+    </p>
+    <ul>
+      <li>Роль <strong>A (Accountable — конечная ответственность за решение об объявлении ЧС)</strong> лежит на Владельце процесса (Председателе Антикризисного Штаба).</li>
+      <li>Роль <strong>R (Responsible — исполнитель)</strong> исполняет:<ul>
+          <li>
+            <strong>Директор по ИТ</strong> — при ЧС общего технологического характера (пожар, отключение питания, потеря Облачной Платформы).</li>
+          <li>
+            <strong>CISO/ДКБ (отмечен *)</strong> — при ЧС, вызванной кибератакой (ransomware, wiper, компрометация данных).</li>
+        </ul>
+      </li>
+    </ul>
+    <p>
       <strong>R (Responsible):</strong> Исполняет задачу. <strong>A (Accountable):</strong> Несёт конечную ответственность. <strong>C (Consult):</strong> Привлекается для консультаций. <strong>I (Inform):</strong> Уведомляется.</p>
+  </ac:rich-text-body>
+</ac:structured-macro>
+<ac:structured-macro ac:macro-id="artifacts-block" ac:name="expand" ac:schema-version="1">
+  <ac:parameter ac:name="title">Артефакты процесса</ac:parameter>
+  <ac:rich-text-body>
+    <p>Настоящая таблица содержит полный перечень документов и записей, создаваемых в ходе исполнения процесса управления непрерывностью технологий. Артефакты являются объективными свидетельствами функционирования процесса и используются при внутренних и внешних аудитах.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 5.0%;"/> <col style="width: 25.0%;"/> <col style="width: 12.0%;"/> <col style="width: 15.0%;"/> <col style="width: 18.0%;"/> <col style="width: 25.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: center;">№</th>
+          <th style="text-align: left;">Артефакт</th>
+          <th style="text-align: left;">Шаг создания</th>
+          <th style="text-align: left;">Владелец</th>
+          <th style="text-align: left;">Место хранения</th>
+          <th style="text-align: left;">Периодичность обновления</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background-color: rgb(244,245,247);">
+          <td colspan="6" style="text-align: left;">
+            <strong>Этап 1: Оценка модели угроз и определение критичных объектов</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td style="text-align: left;">Модель угроз непрерывности</td>
+          <td style="text-align: left;">1.1</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">База знаний / ITSM</td>
+          <td style="text-align: left;">Ежегодно (до 31 января)</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">2</td>
+          <td style="text-align: left;">Перечень критичных ИТ-сервисов с RTO/RPO/MTPD</td>
+          <td style="text-align: left;">1.2</td>
+          <td style="text-align: left;">ИТ Архитектор</td>
+          <td style="text-align: left;">CMDB / База знаний</td>
+          <td style="text-align: left;">При вводе сервиса, при изменении критичности</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">3</td>
+          <td style="text-align: left;">Матрица VBF → ИТ-сервис (картирование бизнес-функций)</td>
+          <td style="text-align: left;">1.2</td>
+          <td style="text-align: left;">ИТ Архитектор</td>
+          <td style="text-align: left;">База знаний / CMDB</td>
+          <td style="text-align: left;">При вводе сервиса, ежегодно</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">4</td>
+          <td style="text-align: left;">Реестр способов резервирования по критичным объектам</td>
+          <td style="text-align: left;">1.3</td>
+          <td style="text-align: left;">ИТ Архитектор</td>
+          <td style="text-align: left;">ITSM / База знаний</td>
+          <td style="text-align: left;">При вводе сервиса, при изменении архитектуры</td>
+        </tr>
+        <tr style="background-color: rgb(244,245,247);">
+          <td colspan="6" style="text-align: left;">
+            <strong>Этап 2: Актуализация плана ОНиВД и DRP</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">5</td>
+          <td style="text-align: left;">DRP-план (на каждый критичный ИТ-сервис)</td>
+          <td style="text-align: left;">2.1</td>
+          <td style="text-align: left;">Владелец АС</td>
+          <td style="text-align: left;">База знаний (страница сервиса)</td>
+          <td style="text-align: left;">Ежегодно, при существенном архитектурном изменении</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">6</td>
+          <td style="text-align: left;">План ОНиВД (BCP)</td>
+          <td style="text-align: left;">2.3</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">База знаний</td>
+          <td style="text-align: left;">Ежегодно</td>
+        </tr>
+        <tr style="background-color: rgb(244,245,247);">
+          <td colspan="6" style="text-align: left;">
+            <strong>Этап 3: Обеспечение готовности к ЧС</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">7</td>
+          <td style="text-align: left;">План проведения учений (сценарий, критерии успешности)</td>
+          <td style="text-align: left;">3.1</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">ITSM</td>
+          <td style="text-align: left;">Перед каждыми учениями</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">8</td>
+          <td style="text-align: left;">Протокол учений (хронометраж, отклонения)</td>
+          <td style="text-align: left;">3.1/3.2</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">ITSM</td>
+          <td style="text-align: left;">По факту каждых учений</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">9</td>
+          <td style="text-align: left;">Отчёт по итогам учений (анализ, корректирующие мероприятия)</td>
+          <td style="text-align: left;">3.3</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">ITSM</td>
+          <td style="text-align: left;">По факту каждых учений</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">10</td>
+          <td style="text-align: left;">Подтверждение устранения отклонений</td>
+          <td style="text-align: left;">3.4</td>
+          <td style="text-align: left;">Владелец АС</td>
+          <td style="text-align: left;">ITSM</td>
+          <td style="text-align: left;">По факту выполнения мероприятий</td>
+        </tr>
+        <tr style="background-color: rgb(244,245,247);">
+          <td colspan="6" style="text-align: left;">
+            <strong>Этап 4: Поддержка готовности к ЧС</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">11</td>
+          <td style="text-align: left;">Актуализированный список восстановительных команд</td>
+          <td style="text-align: left;">4.1</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">ITSM / База знаний</td>
+          <td style="text-align: left;">Ежеквартально</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">12</td>
+          <td style="text-align: left;">Актуализированный DRP-план (после изменений)</td>
+          <td style="text-align: left;">4.2</td>
+          <td style="text-align: left;">Владелец АС</td>
+          <td style="text-align: left;">База знаний</td>
+          <td style="text-align: left;">По факту существенных изменений</td>
+        </tr>
+        <tr style="background-color: rgb(244,245,247);">
+          <td colspan="6" style="text-align: left;">
+            <strong>Этап 5: Действия при наступлении ЧС</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">13</td>
+          <td style="text-align: left;">Запись об объявлении ЧС</td>
+          <td style="text-align: left;">5.1</td>
+          <td style="text-align: left;">Директор по ИТ / CISO</td>
+          <td style="text-align: left;">Оперативный чат / ITSM</td>
+          <td style="text-align: left;">По факту ЧС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">14</td>
+          <td style="text-align: left;">Активированный DRP-план (выбранный сценарий)</td>
+          <td style="text-align: left;">5.3</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">ITSM</td>
+          <td style="text-align: left;">По факту ЧС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">15</td>
+          <td style="text-align: left;">Хронометраж выполнения процедур DRP</td>
+          <td style="text-align: left;">5.5</td>
+          <td style="text-align: left;">Координатор DRP</td>
+          <td style="text-align: left;">Рабочие заметки ITSM</td>
+          <td style="text-align: left;">По факту ЧС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">16</td>
+          <td style="text-align: left;">Подтверждение восстановления (smoke-тесты, Golden Signals)</td>
+          <td style="text-align: left;">5.6</td>
+          <td style="text-align: left;">Координатор DRP</td>
+          <td style="text-align: left;">ITSM / Система мониторинга</td>
+          <td style="text-align: left;">По факту ЧС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">17</td>
+          <td style="text-align: left;">Отчёт PIR (Post-Incident Review)</td>
+          <td style="text-align: left;">5.8</td>
+          <td style="text-align: left;">Владелец АС</td>
+          <td style="text-align: left;">ITSM</td>
+          <td style="text-align: left;">В течение 5 раб. дней после завершения ЧС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">18</td>
+          <td style="text-align: left;">Актуализированная архитектурная документация (As-Built)</td>
+          <td style="text-align: left;">5.8</td>
+          <td style="text-align: left;">ИТ Архитектор</td>
+          <td style="text-align: left;">База знаний / CMDB / GitLab</td>
+          <td style="text-align: left;">В течение 5 раб. дней после PIR</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">19</td>
+          <td style="text-align: left;">Протокол заседания Антикризисного Штаба</td>
+          <td style="text-align: left;">Этап 5</td>
+          <td style="text-align: left;">Секретарь Штаба</td>
+          <td style="text-align: left;">ITSM / База знаний</td>
+          <td style="text-align: left;">По факту ЧС</td>
+        </tr>
+        <tr style="background-color: rgb(244,245,247);">
+          <td colspan="6" style="text-align: left;">
+            <strong>Этап 6: Контроль и совершенствование</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">20</td>
+          <td style="text-align: left;">Ежемесячный отчёт по KPI</td>
+          <td style="text-align: left;">6</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">ITSM / Дашборд</td>
+          <td style="text-align: left;">Ежемесячно, до 5-го числа</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">21</td>
+          <td style="text-align: left;">План мероприятий по совершенствованию процесса</td>
+          <td style="text-align: left;">6</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">ITSM</td>
+          <td style="text-align: left;">Ежегодно</td>
+        </tr>
+        <tr style="background-color: rgb(244,245,247);">
+          <td colspan="6" style="text-align: left;">
+            <strong>Сквозные артефакты (весь цикл процесса)</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">22</td>
+          <td style="text-align: left;">Реестр рисков непрерывности</td>
+          <td style="text-align: left;">Раздел «Реестр рисков»</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">ITSM / База знаний</td>
+          <td style="text-align: left;">Ежеквартально</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">23</td>
+          <td style="text-align: left;">Запись об архитектурном долге</td>
+          <td style="text-align: left;">Раздел «Реестр рисков»</td>
+          <td style="text-align: left;">ИТ Архитектор / Владелец АС</td>
+          <td style="text-align: left;">ITSM</td>
+          <td style="text-align: left;">По факту выявления, ревью раз в полгода</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">24</td>
+          <td style="text-align: left;">Журнал контроля резервного копирования (автоматический)</td>
+          <td style="text-align: left;">Раздел «Требования к бэкапам»</td>
+          <td style="text-align: left;">Система мониторинга</td>
+          <td style="text-align: left;">Лог-файлы / Дашборд</td>
+          <td style="text-align: left;">Автоматически, после каждого бэкапа</td>
+        </tr>
+      </tbody>
+    </table>
   </ac:rich-text-body>
 </ac:structured-macro>
 <ac:structured-macro ac:macro-id="related-processes-block" ac:name="expand" ac:schema-version="1">
   <ac:parameter ac:name="title">Взаимосвязь со смежными процессами ITSM и ИБ</ac:parameter>
   <ac:rich-text-body>
-    <h3>1. Связь с процессом Управления инцидентами</h3>
-    <p>При наступлении ЧС (катастрофа, потеря ЦОД) процесс управления инцидентами переходит в режим DRP. Координатор инцидента передаёт управление DRP Commander'у. Стандартный подсчёт SLA приостанавливается, процесс переходит на контроль RTO/RPO.</p>
-    <h3>2. Связь с процессом Управления изменениями</h3>
-    <p>Любое изменение, затрагивающее критичные ИТ-сервисы (Mission Critical, Business Critical), является триггером для пересмотра DRP. Менеджер процесса непрерывности должен быть уведомлён о таких изменениях. В шаблоне ЗНИ предусмотрено поле «Влияние на непрерывность».</p>
-    <h3>3. Связь с процессом Управления обновлениями</h3>
-    <p>При обновлении ПО на критичных ИТ-сервисах план отката (Rollback Plan) должен быть согласован с DRP-планом. Неудачное обновление, вызвавшее ВПИ, может являться триггером для активации DRP, если откат не удался.</p>
+    <h3>1. Связь с процессом Управления инцидентами (Incident Management)</h3>
+    <p>
+      <strong>Цель:</strong> Обеспечить скоординированное реагирование на ЧС: процесс управления инцидентами обеспечивает коммуникацию с бизнесом, процесс управления непрерывностью — техническое восстановление.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 50.0%;"/> <col style="width: 50.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th>Взаимодействие со стороны Управления инцидентами</th>
+          <th>Взаимодействие со стороны Управления непрерывностью</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>При наступлении ЧС регистрируется инцидент уровня ВПИ (Высокоприоритетный инцидент).</td>
+          <td>Координатор инцидента передаёт техническое управление Координатору DRP. Координатор ВПИ продолжает коммуникацию с бизнесом и клиентами.</td>
+        </tr>
+        <tr>
+          <td>Обеспечивает информирование C-Level по регламенту информирования при ВПИ.</td>
+          <td>Координатор DRP предоставляет Координатору ВПИ данные о ходе восстановления и прогнозируемом времени (ETA).</td>
+        </tr>
+        <tr>
+          <td>Стандартный SLA на время ЧС не приостанавливается в одностороннем порядке.</td>
+          <td>Для критичных сервисов в SLA должен быть зафиксирован раздел DR-SLA, допускающий деградацию на время RTO. С момента объявления ЧС активируется режим DR-SLA.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>2. Связь с процессом Управления изменениями (Change Enablement)</h3>
+    <p>
+      <strong>Цель:</strong> Обеспечить оценку влияния изменений на непрерывность и своевременную актуализацию DRP-планов после изменений.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 50.0%;"/> <col style="width: 50.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th>Взаимодействие со стороны Управления изменениями</th>
+          <th>Взаимодействие со стороны Управления непрерывностью</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Каждый ЗНИ содержит поле «Влияние на непрерывность». При отметке «Да» Владелец АС непрерывности получает автоматическое уведомление.</td>
+          <td>Владелец АС анализирует ЗНИ на соответствие критериям существенного архитектурного изменения (см. Этап 4). При соответствии — инициирует актуализацию DRP (шаг 2.1).</td>
+        </tr>
+        <tr>
+          <td>Существенные архитектурные изменения (смена СУБД, изменение схемы сетевых потоков, смена платформы виртуализации) маркируются флагом «Significant Architecture Change».</td>
+          <td>ИТ Архитектор при планировании изменения определяет, подпадает ли оно под критерии существенного. Если да — в ЗНИ включается флаг, запускающий обязательный пересмотр DRP.</td>
+        </tr>
+        <tr>
+          <td>Изменения, затрагивающие Mission Critical сервисы, согласовываются с Менеджером процесса непрерывности.</td>
+          <td>Владелец АС контролирует, чтобы после завершения изменения DRP-план был актуализирован в течение 15 рабочих дней.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>3. Связь с процессом Управления обновлениями (Update Management)</h3>
+    <p>
+      <strong>Цель:</strong> Обеспечить учёт влияния обновлений на непрерывность. Интегрировать процедуры отката обновлений с DRP-планами.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 50.0%;"/> <col style="width: 50.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th>Взаимодействие со стороны Управления обновлениями</th>
+          <th>Взаимодействие со стороны Управления непрерывностью</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>При обновлении ПО на критичных ИТ-сервисах план отката (Rollback Plan) должен быть согласован с DRP-планом.</td>
+          <td>Владелец АС проверяет, что процедуры отката, описанные в ЗНИ, не противоречат процедурам восстановления DRP и не нарушают очерёдность восстановления.</td>
+        </tr>
+        <tr>
+          <td>Неудачное обновление, вызвавшее ВПИ, может являться триггером для активации DRP, если откат не удался.</td>
+          <td>Координатор DRP получает уведомление о неудачном откате и оценивает необходимость активации DRP (Этап 5).</td>
+        </tr>
+        <tr>
+          <td>Обновления на Предпродуктивной среде (STAGE) могут временно затрагивать резервную площадку, если она используется для тестирования.</td>
+          <td>Владелец АС при планировании обновлений на резервной площадке инициирует процедуру исключения (см. раздел «Управление исключениями и работа с уязвимостями» регламента обновлений).</td>
+        </tr>
+      </tbody>
+    </table>
     <h3>4. Связь с процессом Управления доступностью (Availability Management)</h3>
-    <p>Практика управления доступностью определяет целевые показатели RTO/RPO для ИТ-сервисов. Процесс управления непрерывностью использует эти показатели при разработке DRP-планов и оценке результатов учений.</p>
-    <h3>5. Связь с процессом Управления информационной безопасностью</h3>
-    <p>Модель угроз непрерывности включает угрозы кибератак. DRP-планы для ИТ-сервисов, обрабатывающих критичные данные, согласовываются с ДКБ. При инцидентах ИБ, вызвавших ЧС, координация осуществляется совместно с SOC.</p>
+    <p>
+      <strong>Цель:</strong> Транслировать бизнес-требования к доступности в целевые показатели восстановления (RTO/RPO) и архитектурные решения по резервированию.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 50.0%;"/> <col style="width: 50.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th>Взаимодействие со стороны Управления доступностью</th>
+          <th>Взаимодействие со стороны Управления непрерывностью</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Определяет требования бизнеса к доступности ИТ-сервисов (SLA, SLO).</td>
+          <td>На основе требований к доступности ИТ Архитектор рассчитывает целевые показатели восстановления (RTO/RPO/MTPD) по методике раздела «Критерии и правила расчёта RTO и RPO».</td>
+        </tr>
+        <tr>
+          <td>Согласовывает с бизнесом допустимое время простоя и уровень деградации.</td>
+          <td>Предоставляет данные о достижимых RTO/RPO при различных паттернах резервирования (горячий/тёплый/холодный резерв) и их стоимости.</td>
+        </tr>
+        <tr>
+          <td>Контролирует показатели доступности в штатном режиме.</td>
+          <td>При недостижении целевых показателей доступности (SLO) инициирует анализ: является ли это основанием для пересмотра DRP или активации процедуры Graceful Degradation.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>5. Связь с процессом Управления информационной безопасностью (Information Security Management)</h3>
+    <p>
+      <strong>Цель:</strong> Обеспечить защиту процесса восстановления от угроз ИБ. Интегрировать требования ИБ в DRP-планы.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 50.0%;"/> <col style="width: 50.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th>Взаимодействие со стороны Управления ИБ</th>
+          <th>Взаимодействие со стороны Управления непрерывностью</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Определяет модель угроз ИБ, включая кибератаки (ransomware, wiper, компрометация учётных записей).</td>
+          <td>Модель угроз ИБ интегрируется в общую модель угроз непрерывности (шаг 1.1). CISO участвует в согласовании модели угроз.</td>
+        </tr>
+        <tr>
+          <td>Определяет требования к шифрованию резервных копий, контролю доступа и защите каналов передачи.</td>
+          <td>Требования ИБ включены в раздел 8 блока «Архитектурные паттерны резервирования и требования к резервному копированию».</td>
+        </tr>
+        <tr>
+          <td>При кибератаке, вызвавшей ЧС, CISO может взять на себя координацию (роль R в шаге 5.1).</td>
+          <td>Владелец АС информирует КБ немедленно (шаг 5.4). Процедура Break-Glass активируется с санкции CISO.</td>
+        </tr>
+        <tr>
+          <td>Определяет требования к проверке бэкапов на вредоносное ПО и изоляции учётных записей администраторов бэкапов от общего домена AD.</td>
+          <td>Требования включены в разделы 8.2 и 8.3 блока «Архитектурные паттерны резервирования и требования к резервному копированию».</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>6. Связь с процессом <span style="color: rgb(23,43,77);">Управление конфигурациями</span>
+    </h3>
+    <p>
+      <strong>Цель:</strong> Обеспечить использование актуальных данных о конфигурационных единицах (КЕ), их критичности и взаимосвязях при разработке и актуализации DRP-планов.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 50.0%;"/> <col style="width: 50.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th>Входные данные от CMDB</th>
+          <th>Использование в процессе непрерывности</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Класс критичности КЕ (Mission Critical, Business Critical, Business Operational, Office Production).</td>
+          <td>Определяет необходимость разработки DRP и требования к резервному копированию (см. раздел «Критерии обязательности DRP и резервного копирования»).</td>
+        </tr>
+        <tr>
+          <td>Сервисно-ресурсная модель (РСМ): связи между ИТ-сервисами, приложениями, серверами, сетевыми устройствами.</td>
+          <td>Определяет очерёдность восстановления систем (раздел 6 блока «Требования к резервному копированию и восстановлению»). Позволяет выявить каскадные зависимости.</td>
+        </tr>
+        <tr>
+          <td>Атрибуты КЕ: IP-адреса, владельцы, расположение (ЦОД), ссылки на DRP-план.</td>
+          <td>Для каждого КЕ, обеспечивающего Mission/Business Critical сервис, в CMDB должен быть проставлен атрибут критичности и ссылка на его DRP-план.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>Требование к CMDB:</strong> Архитектурные взаимосвязи (сервисно-ресурсная модель) в CMDB являются основой для определения последовательности восстановления систем. Актуализация CMDB при изменениях (ЗНИ) — обязательное условие актуальности DRP.</p>
+    <h3>7. Связь с процессом Управления регламентными работами (плановые технологические окна)</h3>
+    <p>
+      <strong>Цель:</strong> Исключить конфликты между плановыми окнами обслуживания и DRP-тестированием. Обеспечить учёт влияния регламентных работ на непрерывность.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 50.0%;"/> <col style="width: 50.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th>Взаимодействие со стороны Управления регламентными работами</th>
+          <th>Взаимодействие со стороны Управления непрерывностью</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Предоставляет календарь плановых технологических окон для продуктивных сред.</td>
+          <td>При планировании учений (Этап 3) Владелец АС сверяется с календарём окон, чтобы исключить пересечение с критичными регламентными работами.</td>
+        </tr>
+        <tr>
+          <td>Регламентные работы, затрагивающие Mission Critical и Business Critical сервисы, маркируются флагом «Влияет на непрерывность».</td>
+          <td>Владелец АС получает уведомление о таких работах и контролирует актуализацию DRP после их завершения (шаг 4.2).</td>
+        </tr>
+        <tr>
+          <td>При выводе систем в плановое технологическое окно может потребоваться временная приостановка действия DRP-плана.</td>
+          <td>Владелец АС на время окна может инициировать процедуру исключения (см. раздел «Управление исключениями и работа с уязвимостями» регламента обновлений).</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>8. Связь с процессом Управления жизненным циклом автоматизированных систем (Application Lifecycle Management)</h3>
+    <p>
+      <strong>Цель:</strong> Обеспечить своевременное выявление систем, переходящих в статус EOL (End of Life), и систем на стадии ввода в эксплуатацию, для актуализации DRP.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 50.0%;"/> <col style="width: 50.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th>Взаимодействие со стороны Управления жизненным циклом АС</th>
+          <th>Взаимодействие со стороны Управления непрерывностью</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Предоставляет информацию о планируемом вводе новых АС в эксплуатацию.</td>
+          <td>Является стартовым триггером процесса непрерывности (строка «Ввод нового ИТ-сервиса»). Запускает ветку 1.2 → 1.3 → 2.1.</td>
+        </tr>
+        <tr>
+          <td>Предоставляет информацию о планируемом выводе АС из эксплуатации (EOL).</td>
+          <td>Является триггером для пересмотра DRP смежных систем и актуализации плана ОНиВД. DRP-план выводимой системы архивируется.</td>
+        </tr>
+        <tr>
+          <td>Системы в статусе EOL, но ещё не выведенные из эксплуатации, могут не поддерживаться вендором (отсутствие патчей безопасности).</td>
+          <td>Владелец АС обязан зарегистрировать риск в Реестре рисков непрерывности с признаком «Архитектурный долг». Для таких систем пересматриваются RTO/RPO в сторону ужесточения компенсационных мер.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>9. Связь с процессом Управление технологическими событиями и мониторингом</h3>
+    <p>
+      <strong>Цель:</strong> Обеспечить автоматическое обнаружение условий, требующих активации DRP, на основе данных мониторинга и алертов.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 50.0%;"/> <col style="width: 50.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th>Входные данные от Мониторинга</th>
+          <th>Использование в процессе непрерывности</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Алерты о недоступности ИТ-сервиса (Host Down, Service Unavailable).</td>
+          <td>Являются первичным сигналом для оценки необходимости активации DRP (Этап 5). Алерт направляется Координатору DRP и Менеджеру процесса.</td>
+        </tr>
+        <tr>
+          <td>SLO-метрики: Error Rate, Latency (95-й перцентиль), Saturation.</td>
+          <td>Используются как расширенные SLO-триггеры активации DRP при частичной деградации (см. Этап 5, раздел «Расширенные триггеры активации DRP»).</td>
+        </tr>
+        <tr>
+          <td>Метрики резервного копирования: успешность, время выполнения, объём.</td>
+          <td>Контролируются на дашборде процесса непрерывности. При отклонениях — алерт Техническому специалисту.</td>
+        </tr>
+        <tr>
+          <td>Дашборды Golden Signals (Latency, Traffic, Errors, Saturation).</td>
+          <td>Используются Координатор DRP'ом при верификации восстановления (шаг 5.6) и при контроле ядра после Graceful Degradation.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>Требование:</strong> Система мониторинга должна обеспечивать алертинг по SLO-метрикам с настраиваемыми порогами. Алерты уровня «Critical» по критичным сервисам автоматически направляются Менеджеру процесса и Координатору DRP.</p>
+    <h3>10. Связь с процессом Управления мощностями</h3>
+    <p>
+      <strong>Цель:</strong> Гарантировать, что резервная площадка способна выдержать нагрузку при переключении в режиме DRP.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 50.0%;"/> <col style="width: 50.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th>Взаимодействие со стороны Управления мощностями</th>
+          <th>Взаимодействие со стороны Управления непрерывностью</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Предоставляет данные о текущей нагрузке на продуктивные системы (CPU, RAM, Storage, Network Throughput).</td>
+          <td>При проектировании DRP и выборе паттерна резервирования ИТ Архитектор учитывает, что резервная площадка должна выдерживать не менее 100% пиковой нагрузки основной площадки (для Mission Critical) или пропорциональную долю (для Active-Active).</td>
+        </tr>
+        <tr>
+          <td>Предоставляет прогнозы роста нагрузки.</td>
+          <td>При ежегодном пересмотре DRP (шаг 2.1) Владелец АС сверяет мощность резервной площадки с прогнозом и инициирует модернизацию при необходимости.</td>
+        </tr>
+        <tr>
+          <td>Контролирует утилизацию резервной площадки в режиме ожидания.</td>
+          <td>При использовании паттерна «Тёплый резерв» резервная площадка может использоваться для некритичных нагрузок (Dev/Test). При активации DRP эти нагрузки принудительно вытесняются.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>Требование:</strong> При проектировании резервной площадки для Mission Critical систем должен быть обеспечен запас мощности не менее 20% сверх пиковой нагрузки основной площадки. Для Business Critical — не менее 10%.</p>
+    <p>
+      <br/>
+    </p>
+    <h3>11. Связь с процессом Управления технологическими рисками (Risk Management)</h3>
+    <p>
+      <strong>Цель:</strong> Обеспечить интеграцию рисков непрерывности в корпоративную систему управления рисками. Синхронизировать приоритеты митигации рисков непрерывности с общим риск-аппетитом Компании.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 50.0%;"/> <col style="width: 50.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th>Взаимодействие со стороны Управления рисками</th>
+          <th>Взаимодействие со стороны Управления непрерывностью</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ведёт корпоративный Реестр рисков, определяет методологию оценки и категоризации рисков.</td>
+          <td>Реестр рисков непрерывности (раздел «Реестр рисков непрерывности») является подмножеством корпоративного Реестра рисков. Все риски непрерывности с оценкой влияния High и Critical в обязательном порядке выгружаются в корпоративный Реестр.</td>
+        </tr>
+        <tr>
+          <td>Определяет риск-аппетит Компании — уровень риска, который организация готова принять.</td>
+          <td>Решение о принятии остаточного риска непрерывности (статус «Принят (Accepted)») принимается с учётом утверждённого риск-аппетита. Риски, превышающие риск-аппетит, эскалируются Владельцу процесса.</td>
+        </tr>
+        <tr>
+          <td>Проводит регулярный аудит рисков и контролирует сроки митигации.</td>
+          <td>Владелец АС предоставляет ежеквартальный отчёт о статусе рисков непрерывности (включая архитектурный долг) для включения в сводный отчёт по рискам Компании.</td>
+        </tr>
+        <tr>
+          <td>Определяет критерии приемлемости риска и требования к компенсационным мерам.</td>
+          <td>При регистрации риска непрерывности (раздел «Реестр рисков непрерывности», п. 2) Владелец АС указывает компенсационные меры, соответствующие корпоративной методологии.</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>Требование к синхронизации:</strong> Владелец АС обеспечивает синхронизацию данных между Реестром рисков непрерывности и корпоративным Реестром рисков не реже 1 раза в квартал. Риски с оценкой влияния High и Critical синхронизируются немедленно при изменении статуса.</p>
   </ac:rich-text-body>
 </ac:structured-macro>
 <ac:structured-macro ac:macro-id="vector-block" ac:name="expand" ac:schema-version="1">
@@ -651,7 +1274,7 @@
   <ac:rich-text-body>
     <p>Настоящая таблица описывает верхнеуровневую последовательность операций процесса «Управление непрерывностью технологий». Детальное описание каждого этапа, критерии качества и действия в нестандартных ситуациях приведены в разделе «Жизненный цикл процесса».</p>
     <table class="relative-table wrapped" style="width: 100.0%;">
-      <colgroup> <col style="width: 5.0%;"/> <col style="width: 18.0%;"/> <col style="width: 28.0%;"/> <col style="width: 14.0%;"/> <col style="width: 12.0%;"/> <col style="width: 12.0%;"/> <col style="width: 11.0%;"/> </colgroup>
+      <colgroup> <col style="width: 4.9857%;"/> <col style="width: 17.9812%;"/> <col style="width: 27.9935%;"/> <col style="width: 14.0172%;"/> <col style="width: 12.0147%;"/> <col style="width: 12.0147%;"/> <col style="width: 10.9931%;"/> </colgroup>
       <thead>
         <tr style="background-color: rgb(244,245,247);">
           <th style="text-align: center;">№</th>
@@ -672,7 +1295,7 @@
             <strong>Ежегодный пересмотр / Итоги учений</strong>
           </td>
           <td style="text-align: left;">Плановый запуск процесса по таймеру (не реже 1 раза в год) или по результатам учений, выявивших необходимость пересмотра модели угроз.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">ITSM-система</td>
           <td style="text-align: left;">Задача на актуализацию</td>
           <td style="text-align: left;">
@@ -686,7 +1309,7 @@
             <strong>Ввод нового ИТ-сервиса / Изменение класса критичности / Изменение ИТ-ландшафта</strong>
           </td>
           <td style="text-align: left;">При вводе нового сервиса, изменении его класса критичности или существенном изменении архитектуры инициируется процесс непрерывности для данного сервиса.</td>
-          <td style="text-align: left;">Архитектор</td>
+          <td style="text-align: left;">ИТ ИТ Архитектор</td>
           <td style="text-align: left;">ITSM-система</td>
           <td style="text-align: left;">Запрос на разработку / пересмотр DRP</td>
           <td style="text-align: left;">
@@ -704,9 +1327,9 @@
           <td style="text-align: left;">
             <strong>Актуализировать модель угроз</strong>
           </td>
-          <td style="text-align: left;">Ежегодный пересмотр перечня потенциальных угроз (пожар, обрыв сетей, кибератаки, полная потеря ЦОД). Модель утверждается СТО. Обязательно включает угрозу полной потери основной площадки.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
-          <td style="text-align: left;">ITSM-система / Confluence</td>
+          <td style="text-align: left;">Ежегодный пересмотр перечня потенциальных угроз (обрыв сетей, кибератаки, полная потеря Облачной Платформы). Модель утверждается Директором по ИТ. Обязательно включает угрозу полной потери основной площадки.</td>
+          <td style="text-align: left;">Владелец АС</td>
+          <td style="text-align: left;">ITSM-система / База знаний</td>
           <td style="text-align: left;">Актуализированная модель угроз</td>
           <td style="text-align: left;">
             <strong>1.2</strong> Определить критичные ИТ-сервисы</td>
@@ -718,8 +1341,8 @@
           <td style="text-align: left;">
             <strong>Определить критичные ИТ-сервисы и показатели</strong>
           </td>
-          <td style="text-align: left;">Архитектор на основе бизнес-требований определяет класс критичности сервиса и рассчитывает RTO/RPO/MTPD. Менеджер сервиса согласовывает показатели с бизнес-заказчиком.</td>
-          <td style="text-align: left;">Архитектор</td>
+          <td style="text-align: left;">ИТ ИТ Архитектор на основе бизнес-требований определяет класс критичности сервиса и рассчитывает RTO/RPO/MTPD. Владелец АС согласовывает показатели с бизнес-заказчиком.</td>
+          <td style="text-align: left;">ИТ ИТ Архитектор</td>
           <td style="text-align: left;">ITSM-система / CMDB</td>
           <td style="text-align: left;">Перечень критичных сервисов с RTO/RPO/MTPD</td>
           <td style="text-align: left;">
@@ -732,8 +1355,8 @@
           <td style="text-align: left;">
             <strong>Определить способы резервирования</strong>
           </td>
-          <td style="text-align: left;">Для каждого критичного сервиса Архитектор определяет методы резервирования: перевод на другую площадку, ЗУД, резервный персонал. Выбор паттерна — согласно разделу «Архитектурные паттерны резервирования».</td>
-          <td style="text-align: left;">Архитектор</td>
+          <td style="text-align: left;">Для каждого критичного сервиса ИТ ИТ Архитектор определяет методы резервирования: перевод на другую площадку, ЗУД, резервный персонал. Выбор паттерна — согласно разделу «Архитектурные паттерны резервирования».</td>
+          <td style="text-align: left;">ИТ ИТ Архитектор</td>
           <td style="text-align: left;">ITSM-система</td>
           <td style="text-align: left;">Способы резервирования по каждому объекту</td>
           <td style="text-align: left;">
@@ -751,9 +1374,9 @@
           <td style="text-align: left;">
             <strong>Разработать/актуализировать DRP-план</strong>
           </td>
-          <td style="text-align: left;">Менеджер сервиса разрабатывает или актуализирует DRP для каждого критичного сервиса. Структура — согласно разделу «Состав DRP».</td>
-          <td style="text-align: left;">Менеджер сервиса</td>
-          <td style="text-align: left;">Confluence / ITSM-система</td>
+          <td style="text-align: left;">Владелец АС разрабатывает или актуализирует DRP для каждого критичного сервиса. Структура — согласно разделу «Состав DRP».</td>
+          <td style="text-align: left;">Владелец АС</td>
+          <td style="text-align: left;">База знаний / ITSM-система</td>
           <td style="text-align: left;">DRP-план (актуализированный)</td>
           <td style="text-align: left;">
             <strong>2.2</strong> Согласовать DRP-план</td>
@@ -765,11 +1388,13 @@
           <td style="text-align: left;">
             <strong>Согласовать DRP-план</strong>
           </td>
-          <td style="text-align: left;">DRP направляется на согласование: Менеджер процесса, Архитектор ИТ, Директор по КБ (если сервис Mission Critical). При отклонении — возврат на 2.1.</td>
-          <td style="text-align: left;">Менеджер сервиса</td>
+          <td style="text-align: left;">DRP направляется на согласование: Владелец АС, ИТ ИТ Архитектор ИТ, Директор по КБ. При отклонении — возврат на 2.1.</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">ITSM-система</td>
           <td style="text-align: left;">Согласованный DRP-план</td>
-          <td style="text-align: left;">Согласован → <strong>2.3</strong>. Не согласован → <strong>2.1</strong>
+          <td style="text-align: left;">
+            <p>Согласован → <strong>2.3 </strong>Актуализировать план ОНиВД</p>
+            <p>Не согласован → <strong>2.1 </strong>Разработать/актуализировать DRP</p>
           </td>
         </tr>
         <tr>
@@ -779,11 +1404,14 @@
           <td style="text-align: left;">
             <strong>Актуализировать план ОНиВД</strong>
           </td>
-          <td style="text-align: left;">Менеджер процесса актуализирует сводный план ОНиВД с учётом изменений в DRP. Информирует участников восстановительных команд.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
-          <td style="text-align: left;">Confluence</td>
+          <td style="text-align: left;">Владелец АС актуализирует сводный план ОНиВД с учётом изменений в DRP. Информирует участников восстановительных команд.</td>
+          <td style="text-align: left;">Владелец АС</td>
+          <td style="text-align: left;">База знаний</td>
           <td style="text-align: left;">Актуализированный план ОНиВД</td>
-          <td style="text-align: left;">Требуются изменения? Да → <strong>2.1</strong>. Нет → <strong>3.1</strong>
+          <td style="text-align: left;">
+            <p>Требуются изменения?</p>
+            <p>Да → <strong>2.1 </strong>Разработать/актуализировать DRP</p>
+            <p>Нет → <strong>3.1 </strong>Подготовить сценарий и провести учения</p>
           </td>
         </tr>
         <tr style="background-color: rgb(244,245,247);">
@@ -798,8 +1426,8 @@
           <td style="text-align: left;">
             <strong>Подготовить сценарий и провести учения</strong>
           </td>
-          <td style="text-align: left;">Менеджер процесса разрабатывает сценарий учений, определяет критерии успешности и проводит учения. Фиксация времени каждого шага, отклонений, действий участников.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">Владелец АС разрабатывает сценарий учений, определяет критерии успешности и проводит учения. Фиксация времени каждого шага, отклонений, действий участников.</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">ITSM-система</td>
           <td style="text-align: left;">Протокол учений</td>
           <td style="text-align: left;">
@@ -812,11 +1440,18 @@
           <td style="text-align: left;">
             <strong>Провести анализ результатов учений</strong>
           </td>
-          <td style="text-align: left;">Менеджер процесса сопоставляет фактические показатели с целевыми (RTO/RPO). Выявляет отклонения. Формирует список корректирующих мероприятий.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">Владелец АС сопоставляет фактические показатели с целевыми (RTO/RPO). Выявляет отклонения. Формирует список корректирующих мероприятий.</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">ITSM-система</td>
           <td style="text-align: left;">Отчёт по итогам учений. Список мероприятий.</td>
-          <td style="text-align: left;">Есть отклонения? Да → <strong>3.4</strong>. Нет → <strong>4.1</strong> и <strong>4.2</strong> (параллельно)</td>
+          <td style="text-align: left;">
+            <p>Есть отклонения?</p>
+            <p>Да → <strong>3.4 </strong>Устранить отклонения</p>
+            <p>Нет → <strong>4.1 </strong>Поддерживать актуальность списков команд</p>
+            <p>и</p>
+            <p>
+              <strong>4.2</strong> Поддерживать актуальность DRP при изменениях<strong> </strong>(параллельно)</p>
+          </td>
         </tr>
         <tr>
           <td style="text-align: center;">
@@ -825,8 +1460,8 @@
           <td style="text-align: left;">
             <strong>Устранить отклонения</strong>
           </td>
-          <td style="text-align: left;">Менеджер сервиса выполняет корректирующие мероприятия. При значительных отклонениях инициирует пересмотр DRP.</td>
-          <td style="text-align: left;">Менеджер сервиса</td>
+          <td style="text-align: left;">Владелец АС выполняет корректирующие мероприятия. При значительных отклонениях инициирует пересмотр DRP.</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">ITSM-система</td>
           <td style="text-align: left;">Подтверждение устранения отклонений</td>
           <td style="text-align: left;">Возврат к <strong>2.1</strong> (пересмотр DRP с учётом отклонений)</td>
@@ -843,11 +1478,14 @@
           <td style="text-align: left;">
             <strong>Поддерживать актуальность списков команд</strong>
           </td>
-          <td style="text-align: left;">Менеджер процесса проводит ежеквартальную проверку и актуализацию состава восстановительных команд.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">Владелец АС проводит ежеквартальную проверку и актуализацию состава восстановительных команд.</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">ITSM-система</td>
           <td style="text-align: left;">Актуализированный список команд</td>
-          <td style="text-align: left;">Ожидание ЧС (шлюз). При ЧС → <strong>5.2</strong>
+          <td style="text-align: left;">
+            <p>Ожидание ЧС (шлюз).</p>
+            <p>Возникло → <strong>5.2 </strong>Созвать Антикризисный Штаб</p>
+            <p>Не возникло → Цикл завершен</p>
           </td>
         </tr>
         <tr>
@@ -857,11 +1495,14 @@
           <td style="text-align: left;">
             <strong>Поддерживать актуальность DRP при изменениях</strong>
           </td>
-          <td style="text-align: left;">Менеджер сервиса при получении информации об изменениях анализирует влияние на DRP и актуализирует в течение 15 рабочих дней.</td>
-          <td style="text-align: left;">Менеджер сервиса</td>
-          <td style="text-align: left;">ITSM-система / Confluence</td>
+          <td style="text-align: left;">Владелец АС при получении информации об изменениях анализирует влияние на DRP и актуализирует в течение 15 рабочих дней.</td>
+          <td style="text-align: left;">Владелец АС</td>
+          <td style="text-align: left;">ITSM-система / База знаний</td>
           <td style="text-align: left;">Актуализированный DRP</td>
-          <td style="text-align: left;">Ожидание ЧС (шлюз). При ЧС → <strong>5.2</strong>
+          <td style="text-align: left;">
+            <p>Ожидание ЧС (шлюз).</p>
+            <p>Возникло → <strong>5.2 </strong>Созвать Антикризисный Штаб</p>
+            <p>Не возникло → Цикл завершен</p>
           </td>
         </tr>
         <tr style="background-color: rgb(244,245,247);">
@@ -871,13 +1512,27 @@
         </tr>
         <tr>
           <td style="text-align: center;">
+            <strong>-</strong>
+          </td>
+          <td style="text-align: left;">
+            <strong>Объявлена ЧС</strong>
+          </td>
+          <td style="text-align: left;">Решение об объявлении ЧС принимается Директором по ИТ (или CISO — для кибератак). Фиксация в оперативном чате и ITSM-системе. С этого момента для затронутых ИТ-сервисов активируется режим DR-SLA</td>
+          <td style="text-align: left;">Директор по ИТ / CISO</td>
+          <td style="text-align: left;">Оперативный чат / ITSM-система</td>
+          <td style="text-align: left;">Запись об объявлении ЧС</td>
+          <td style="text-align: left;">
+            <strong>5.2 </strong>Созвать Антикризисный Штаб</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">
             <strong>5.2</strong>
           </td>
           <td style="text-align: left;">
             <strong>Созвать Антикризисный Штаб</strong>
           </td>
-          <td style="text-align: left;">Менеджер процесса оповещает членов Штаба согласно Плану ОНиВД. Открывается ВКС-комната. Запускается регламент информирования C-Level.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">Владелец АС оповещает членов Штаба согласно Плану ОНиВД. Открывается ВКС-комната. Запускается регламент информирования C-Level.</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">ВКС / Мессенджер</td>
           <td style="text-align: left;">Штаб в сборе</td>
           <td style="text-align: left;">
@@ -890,11 +1545,14 @@
           <td style="text-align: left;">
             <strong>Выбрать и активировать DRP</strong>
           </td>
-          <td style="text-align: left;">Менеджер процесса определяет применимый DRP-план и передаёт управление DRP Commander'у.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">Владелец АС определяет применимый DRP-план и передаёт управление Координатору DRP.</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">ITSM-система</td>
           <td style="text-align: left;">Активированный DRP-план</td>
-          <td style="text-align: left;">Кибератака? Да → <strong>5.4</strong>. Нет → <strong>5.5</strong>
+          <td style="text-align: left;">
+            <p>Кибератака? (Шлюз)</p>
+            <p>Да → <strong>5.4 </strong>Информировать КБ</p>
+            <p>Нет → <strong>5.5 </strong>Выполнить процедуры DRP</p>
           </td>
         </tr>
         <tr>
@@ -905,7 +1563,7 @@
             <strong>Информировать КБ</strong>
           </td>
           <td style="text-align: left;">При ЧС, связанной с кибератакой или компрометацией данных, CISO уведомляется немедленно.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">Телефон / Мессенджер</td>
           <td style="text-align: left;">КБ уведомлён</td>
           <td style="text-align: left;">
@@ -918,8 +1576,8 @@
           <td style="text-align: left;">
             <strong>Выполнить процедуры DRP</strong>
           </td>
-          <td style="text-align: left;">DRP Commander руководит восстановительной командой. Выполняются пошаговые процедуры DRP-плана. Ведётся хронометраж.</td>
-          <td style="text-align: left;">DRP Commander / Восстановительная команда</td>
+          <td style="text-align: left;">Координатор DRP руководит восстановительной командой. Выполняются пошаговые процедуры DRP-плана. Ведётся хронометраж.</td>
+          <td style="text-align: left;">Координатор DRP / Восстановительная команда</td>
           <td style="text-align: left;">Продуктивная / Резервная среда</td>
           <td style="text-align: left;">Хронометраж выполнения</td>
           <td style="text-align: left;">
@@ -932,8 +1590,8 @@
           <td style="text-align: left;">
             <strong>Подтвердить восстановление</strong>
           </td>
-          <td style="text-align: left;">DRP Commander выполняет smoke-тесты, контроль Golden Signals, проверку целостности данных.</td>
-          <td style="text-align: left;">DRP Commander</td>
+          <td style="text-align: left;">Координатор DRP выполняет smoke-тесты, контроль Golden Signals, проверку целостности данных.</td>
+          <td style="text-align: left;">Координатор DRP</td>
           <td style="text-align: left;">Система мониторинга</td>
           <td style="text-align: left;">Подтверждение восстановления</td>
           <td style="text-align: left;">
@@ -946,8 +1604,8 @@
           <td style="text-align: left;">
             <strong>Выполнить возврат к штатному режиму</strong>
           </td>
-          <td style="text-align: left;">DRP Commander выполняет обратное переключение на основную площадку, синхронизацию данных, отключение резервной площадки.</td>
-          <td style="text-align: left;">DRP Commander</td>
+          <td style="text-align: left;">Координатор DRP выполняет обратное переключение на основную площадку, синхронизацию данных, отключение резервной площадки.</td>
+          <td style="text-align: left;">Координатор DRP</td>
           <td style="text-align: left;">Продуктивная среда</td>
           <td style="text-align: left;">Штатный режим восстановлен</td>
           <td style="text-align: left;">
@@ -960,8 +1618,16 @@
           <td style="text-align: left;">
             <strong>Провести пост-анализ (PIR)</strong>
           </td>
-          <td style="text-align: left;">Менеджер сервиса проводит анализ хронологии, оценку фактических RTO/RPO, формирует корректирующие мероприятия.</td>
-          <td style="text-align: left;">Менеджер сервиса</td>
+          <td style="text-align: left;">Владелец АС проводит анализ хронологии, оценку фактических RTO/RPO, формирует корректирующие мероприятия.<p>
+              <strong>Актуализация архитектурной документации (As-Built):</strong> Если в ходе реального аварийного восстановления инженерам пришлось внести изменения в топологию сети, конфигурацию серверов, балансировщиков или иные компоненты (в обход стандартных процедур), ИТ ИТ Архитектор сервиса обязан в течение <strong>5 рабочих дней</strong> после завершения PIR внести эти изменения в целевую архитектурную документацию:</p>
+            <ul>
+              <li>Архитектурные схемы в База знаний (Enterprise Architecture Repository).</li>
+              <li>Сервисно-ресурсную модель в CMDB.</li>
+              <li>Конфигурационные файлы Infrastructure as Code (Terraform, Ansible).</li>
+            </ul>
+            <p>Невыполнение этого требования в установленный срок классифицируется как архитектурный долг (раздел 6 Реестра рисков непрерывности) и эскалируется на Архитектурный комитет.</p>
+          </td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">ITSM-система</td>
           <td style="text-align: left;">Отчёт PIR. Корректирующие мероприятия.</td>
           <td style="text-align: left;">
@@ -979,11 +1645,14 @@
           <td style="text-align: left;">
             <strong>Контроль и совершенствование процесса</strong>
           </td>
-          <td style="text-align: left;">Менеджер процесса выполняет ежемесячный расчёт KPI, формирует отчёты, планирует мероприятия по повышению эффективности. Ежегодный перезапуск цикла.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">Владелец АС выполняет ежемесячный расчёт KPI, формирует отчёты, планирует мероприятия по повышению эффективности. Ежегодный перезапуск цикла.</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">ITSM-система</td>
           <td style="text-align: left;">Отчёт по KPI. План мероприятий.</td>
-          <td style="text-align: left;">Конец цикла. Ежегодный перезапуск с <strong>1.1</strong>.</td>
+          <td style="text-align: left;">
+            <p>Конец цикла.</p>
+            <p>Ежегодный перезапуск с <strong>1.1 </strong>Актуализировать модель угроз</p>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -1006,9 +1675,132 @@
     </ul>
     <h3>Операционные требования</h3>
     <ul>
-      <li>Модель угроз актуализируется <strong>ежегодно</strong>. Утверждается СТО (директором по ИТ).</li>
-      <li>Модель угроз <strong>обязательно</strong> включает угрозу полной потери основной площадки (ЦОД).</li>
-      <li>Для каждого критичного ИТ-сервиса (Mission Critical, Business Critical) должны быть определены и согласованы с бизнесом: RTO, RPO, MTPD.</li>
+      <li>Учения проводятся с периодичностью, зависящей от класса критичности сервиса:<ul>
+          <li>
+            <strong>Mission Critical:</strong> не реже <strong>1 раза в квартал</strong>. Минимально допустимый формат — Tabletop Exercises (штабные учения) с пошаговым прохождением DRP-плана восстановительной командой. Не реже <strong>1 раза в год</strong> — полномасштабные учения с реальным переключением на резервную площадку.</li>
+          <li>
+            <strong>Business Critical:</strong> не реже <strong>1 раза в год</strong>. Рекомендованный формат — полномасштабные учения с реальным переключением.</li>
+          <li>
+            <strong>Business Operational:</strong> не реже <strong>1 раза в 2 года</strong>. Допустимый формат — Tabletop Exercises (штабные учения).</li>
+        </ul>
+      </li>
+      <li>Критерии успешности учений определяются <strong>до начала</strong> учений и фиксируются в плане.</li>
+      <li>По итогам учений формируется отчёт. Отклонения документируются. Корректирующие мероприятия назначаются с ответственными и сроками.</li>
+      <li>При значительных отклонениях проводятся <strong>повторные учения</strong> после устранения недостатков.</li>
+    </ul>
+    <h4>Форматы учений</h4>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 20.0%;"/> <col style="width: 40.0%;"/> <col style="width: 40.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: left;">Формат</th>
+          <th style="text-align: left;">Описание</th>
+          <th style="text-align: left;">Применимость</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left;">
+            <strong>Tabletop Exercise (Штабные учения)</strong>
+          </td>
+          <td style="text-align: left;">Пошаговое прохождение DRP-плана восстановительной командой без реального переключения. Обсуждение действий, проверка актуальности контактов и процедур. Минимальные затраты, может проводиться часто.</td>
+          <td style="text-align: left;">Mission Critical (ежеквартально), Business Operational</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">
+            <strong>Component Test (Компонентное тестирование)</strong>
+          </td>
+          <td style="text-align: left;">Тестирование отдельного компонента DRP: восстановление БД из бэкапа, переключение сетевой связности, активация резервной ВМ. Без остановки продуктивного сервиса.</td>
+          <td style="text-align: left;">Mission Critical (между полномасштабными), Business Critical</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">
+            <strong>Full-Scale Test (Полномасштабные учения)</strong>
+          </td>
+          <td style="text-align: left;">Полное переключение на резервную площадку с остановкой продуктивного сервиса. Максимально приближено к реальной ЧС.</td>
+          <td style="text-align: left;">Mission Critical (не реже 1 раза в год), Business Critical</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>Картирование критичных бизнес-функций (VBF Mapping)</h3>
+    <p>Определение критичных ИТ-сервисов и их целевых показателей восстановления (RTO/RPO) должно основываться не на технологической значимости системы, а на её роли в обеспечении критически важных бизнес-функций (Vital Business Functions, VBF). Настоящий раздел определяет обязательную процедуру картирования.</p>
+    <h4>1. Порядок картирования</h4>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 5.0%;"/> <col style="width: 20.0%;"/> <col style="width: 40.0%;"/> <col style="width: 35.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: center;">Шаг</th>
+          <th style="text-align: left;">Действие</th>
+          <th style="text-align: left;">Описание</th>
+          <th style="text-align: left;">Результат</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td style="text-align: left;">
+            <strong>Идентификация VBF</strong>
+          </td>
+          <td style="text-align: left;">Бизнес-заказчик (Владелец бизнес-процесса) определяет перечень критически важных бизнес-функций, остановка которых приведёт к необратимым последствиям (финансовые потери, регуляторные штрафы, репутационный ущерб).</td>
+          <td style="text-align: left;">Перечень VBF с приоритетами</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">2</td>
+          <td style="text-align: left;">
+            <strong>Привязка VBF к ИТ-сервисам</strong>
+          </td>
+          <td style="text-align: left;">ИТ ИТ Архитектор совместно с Владельцем АС определяет, какие ИТ-сервисы обеспечивают каждую VBF. Один ИТ-сервис может обеспечивать несколько VBF. Одна VBF может зависеть от нескольких ИТ-сервисов.</td>
+          <td style="text-align: left;">Матрица VBF → ИТ-сервис</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">3</td>
+          <td style="text-align: left;">
+            <strong>Определение MTPD для VBF</strong>
+          </td>
+          <td style="text-align: left;">Бизнес-заказчик определяет максимально допустимый период простоя (MTPD) для каждой VBF. Это предельное время, после которого последствия становятся необратимыми.</td>
+          <td style="text-align: left;">MTPD для каждой VBF</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">4</td>
+          <td style="text-align: left;">
+            <strong>Трансляция MTPD в RTO/RPO</strong>
+          </td>
+          <td style="text-align: left;">На основе MTPD для VBF ИТ ИТ Архитектор рассчитывает RTO и RPO для обеспечивающих ИТ-сервисов. Если ИТ-сервис обеспечивает несколько VBF, RTO определяется по самой жёсткой из них.</td>
+          <td style="text-align: left;">RTO/RPO для каждого критичного ИТ-сервиса</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>2. Пример картирования</h4>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 20.0%;"/> <col style="width: 25.0%;"/> <col style="width: 25.0%;"/> <col style="width: 30.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: left;">VBF (Бизнес-функция)</th>
+          <th style="text-align: left;">MTPD (от бизнеса)</th>
+          <th style="text-align: left;">Обеспечивающие ИТ-сервисы</th>
+          <th style="text-align: left;">Расчётный RTO для ИТ-сервиса</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left;">Расчёт заработной платы</td>
+          <td style="text-align: left;">24 часа</td>
+          <td style="text-align: left;">1С ЗУП<br/>СУБД HR</td>
+          <td style="text-align: left;">1С ЗУП: RTO ≤ 4 часа<br/>СУБД: RTO ≤ 2 часа</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Корпоративная почта</td>
+          <td style="text-align: left;">8 часов</td>
+          <td style="text-align: left;">Почтовый кластер<br/>Шлюз KSMG</td>
+          <td style="text-align: left;">Почтовый кластер: RTO ≤ 1 час<br/>Шлюз: RTO ≤ 30 минут</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>3. Документирование</h4>
+    <ul>
+      <li>Матрица VBF → ИТ-сервис → RTO/RPO документируется в CMDB (атрибуты КЕ) и в DRP-плане соответствующего сервиса.</li>
+      <li>Актуализация матрицы производится при каждом существенном архитектурном изменении (см. Этап 4) и при ежегодном пересмотре модели угроз (шаг 1.1).</li>
+      <li>Ответственный за актуализацию: ИТ ИТ Архитектор (техническая часть), Владелец АС (согласование с бизнесом).</li>
     </ul>
     <h3>Действия в нестандартных ситуациях</h3>
     <table class="relative-table wrapped" style="width: 100.0%;">
@@ -1024,13 +1816,13 @@
           <td style="text-align: left;">
             <strong>Бизнес не согласовывает показатели RTO/RPO</strong>
           </td>
-          <td style="text-align: left;">Менеджер сервиса эскалирует на Владельца процесса. Проводится совместное совещание с представителями бизнеса для обоснования показателей. При недостижении согласия — показатели фиксируются на уровне максимально возможных, риск регистрируется.</td>
+          <td style="text-align: left;">Владелец АС эскалирует на Владельца процесса. Проводится совместное совещание с представителями бизнеса для обоснования показателей. При недостижении согласия — показатели фиксируются на уровне максимально возможных, риск регистрируется.</td>
         </tr>
         <tr>
           <td style="text-align: left;">
             <strong>Выявлена новая угроза, не предусмотренная моделью</strong>
           </td>
-          <td style="text-align: left;">Менеджер процесса инициирует внеплановый пересмотр модели угроз. При подтверждении — модель дополняется, проводится оценка влияния на существующие DRP.</td>
+          <td style="text-align: left;">Владелец АС инициирует внеплановый пересмотр модели угроз. При подтверждении — модель дополняется, проводится оценка влияния на существующие DRP.</td>
         </tr>
       </tbody>
     </table>
@@ -1072,13 +1864,13 @@
           <td style="text-align: left;">
             <strong>DRP-план не согласован (отклонён)</strong>
           </td>
-          <td style="text-align: left;">Менеджер сервиса дорабатывает план в соответствии с замечаниями. Срок доработки — не более 10 рабочих дней. Повторное согласование.</td>
+          <td style="text-align: left;">Владелец АС дорабатывает план в соответствии с замечаниями. Срок доработки — не более 10 рабочих дней. Повторное согласование.</td>
         </tr>
         <tr>
           <td style="text-align: left;">
             <strong>Изменение ИТ-ландшафта затрагивает несколько DRP</strong>
           </td>
-          <td style="text-align: left;">Менеджер процесса инициирует внеплановую проверку всех затронутых DRP. Менеджеры сервисов актуализируют планы в течение 15 рабочих дней после изменения.</td>
+          <td style="text-align: left;">Владелец АС инициирует внеплановую проверку всех затронутых DRP. Менеджеры сервисов актуализируют планы в течение 15 рабочих дней после изменения.</td>
         </tr>
       </tbody>
     </table>
@@ -1121,13 +1913,13 @@
           <td style="text-align: left;">
             <strong>Учения выявили невозможность достижения целевого RTO</strong>
           </td>
-          <td style="text-align: left;">Менеджер сервиса инициирует анализ причин. При технической невозможности — пересмотр RTO с бизнесом или модернизация инфраструктуры. Риск регистрируется.</td>
+          <td style="text-align: left;">Владелец АС инициирует анализ причин. При технической невозможности — пересмотр RTO с бизнесом или модернизация инфраструктуры. Риск регистрируется.</td>
         </tr>
         <tr>
           <td style="text-align: left;">
             <strong>Ключевые участники восстановительной команды недоступны в день учений</strong>
           </td>
-          <td style="text-align: left;">Менеджер процесса переносит учения на резервную дату. При систематической недоступности — эскалация на Владельца процесса. Состав команды пересматривается.</td>
+          <td style="text-align: left;">Владелец АС переносит учения на резервную дату. При систематической недоступности — эскалация на Владельца процесса. Состав команды пересматривается.</td>
         </tr>
       </tbody>
     </table>
@@ -1154,10 +1946,74 @@
       <li>Участники восстановительных команд проходят обучение и инструктаж по DRP-планам.</li>
       <li>При любом изменении, влияющем на непрерывность (ЗНИ, вывод из эксплуатации, миграция), DRP пересматривается в течение 15 рабочих дней.</li>
     </ul>
+    <h3>Критерии существенного архитектурного изменения</h3>
+    <p>Не каждое изменение ИТ-ландшафта требует пересмотра DRP-плана. Обязательному пересмотру (запуск ветки 2.1–2.2) подлежат только <strong>существенные архитектурные изменения</strong>, удовлетворяющие одному или нескольким из следующих критериев:</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 5.0%;"/> <col style="width: 30.0%;"/> <col style="width: 40.0%;"/> <col style="width: 25.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: center;">№</th>
+          <th style="text-align: left;">Критерий</th>
+          <th style="text-align: left;">Пример</th>
+          <th style="text-align: left;">Что пересматривается в DRP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td style="text-align: left;">
+            <strong>Изменение схемы сетевых потоков между Зон доступности</strong>
+          </td>
+          <td style="text-align: left;">Добавление нового канала связи между площадками, изменение маршрутизации, смена провайдера MPLS/VPN, изменение Зон доступности</td>
+          <td style="text-align: left;">Процедуры переключения сетевой связности (DNS, балансировщики)</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">2</td>
+          <td style="text-align: left;">
+            <strong>Смена типа СУБД или Облачной Платформы</strong>
+          </td>
+          <td style="text-align: left;">Миграция с PostgreSQL на MS SQL, смена облачного провайдера.</td>
+          <td style="text-align: left;">Процедуры восстановления из бэкапа, RPO (изменение механизма репликации)</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">3</td>
+          <td style="text-align: left;">
+            <strong>Изменение критической зависимости (модуля)</strong>
+          </td>
+          <td style="text-align: left;">Замена SSO-провайдера, переход на новую систему аутентификации, смена почтового шлюза, отказ от промежуточного брокера сообщений.</td>
+          <td style="text-align: left;">Очерёдность восстановления (раздел 6), процедуры верификации</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">4</td>
+          <td style="text-align: left;">
+            <strong>Вывод из эксплуатации или ввод новой Зоны доступности</strong>
+          </td>
+          <td style="text-align: left;">Закрытие старой Зоны доступности, ввод в эксплуатацию новой, изменение топологии резервирования (например, переход от холодного резерва к тёплому).</td>
+          <td style="text-align: left;">Полный пересмотр DRP-плана</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">5</td>
+          <td style="text-align: left;">
+            <strong>Изменение класса критичности сервиса</strong>
+          </td>
+          <td style="text-align: left;">Повышение с Business Operational до Business Critical, понижение с Mission Critical до Business Critical.</td>
+          <td style="text-align: left;">RTO/RPO, паттерн резервирования, требования к георезервированию</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>Порядок действий при существенном архитектурном изменении</h4>
+    <ol>
+      <li>ИТ ИТ Архитектор при планировании изменения (на этапе ЗНИ) определяет, подпадает ли изменение под критерии существенного. Если да — в ЗНИ включается флаг «Влияет на непрерывность».</li>
+      <li>Владелец АС автоматически уведомляется о ЗНИ с флагом «Влияет на непрерывность».</li>
+      <li>Владелец АС в течение <strong>15 рабочих дней</strong> после завершения изменения актуализирует DRP-план (шаг 2.1) и направляет на согласование (шаг 2.2).</li>
+      <li>Если изменение не подпадает под критерии существенного — DRP-план не пересматривается. Факт оценки фиксируется в рабочей заметке ЗНИ.</li>
+    </ol>
+    <h4>Контроль</h4>
+    <p>Владелец АС ежемесячно проверяет перечень завершённых ЗНИ с флагом «Влияет на непрерывность» и контролирует факт актуализации соответствующих DRP-планов. Отсутствие актуализации по истечении 15 рабочих дней эскалируется на Владельца процесса.</p>
     <h3>Критерии качества этапа</h3>
     <ul>
       <li>100% восстановительных команд имеют актуальный списочный состав (проверка не реже 1 раза в квартал).</li>
-      <li>Менеджер процесса уведомлён о 100% изменений, влияющих на непрерывность.</li>
+      <li>Владелец АС уведомлён о 100% изменений, влияющих на непрерывность.</li>
     </ul>
   </ac:rich-text-body>
 </ac:structured-macro>
@@ -1166,6 +2022,13 @@
   <ac:rich-text-body>
     <h3>Цель этапа</h3>
     <p>Обеспечить быстрое и скоординированное реагирование на реальную ЧС: активацию Антикризисного Штаба, запуск соответствующего DRP-плана, восстановление ИТ-сервисов в пределах целевых RTO/RPO и возврат к штатному режиму.</p>
+    <h3>Режим обслуживания при ЧС</h3>
+    <p>С момента объявления ЧС для затронутых ИТ-сервисов активируется режим <strong>DR-SLA</strong> — согласованный с бизнесом режим обслуживания в условиях аварийного восстановления. В этом режиме:</p>
+    <ul>
+      <li>Допускается деградация сервиса на время, не превышающее RTO, зафиксированное в DRP-плане.</li>
+      <li>Контрольные метрики переключаются со стандартных SLA (время реакции/устранения) на метрики DR-SLA (RTO/RPO).</li>
+      <li>Бизнес-заказчик уведомляется о переходе в режим DR-SLA в течение 15 минут после объявления ЧС.</li>
+    </ul>
     <h3>Триггеры активации</h3>
     <p>Этап запускается при наступлении любого из следующих событий:</p>
     <ul>
@@ -1173,6 +2036,121 @@
       <li>Отказ оборудования, приведший к полному отключению ИТ-сервиса — срабатывание сценария 1 DRP-плана.</li>
       <li>Кибератака, вызвавшая деградацию или отказ ИТ-сервиса — срабатывание сценариев 6–9 DRP-плана.</li>
       <li>Иное событие, квалифицированное как ЧС решением Директора по ИТ или CISO.</li>
+    </ul>
+    <h3>Расширенные триггеры активации DRP (SLO-based)</h3>
+    <p>Помимо классических триггеров (полная потеря Зоны доступности, отказ оборудования), активация DRP может быть инициирована при недостижении целевых показателей качества обслуживания (SLO), даже если сервис формально доступен. Это позволяет реагировать на частичную деградацию до её перерастания в полный отказ.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 5.0%;"/> <col style="width: 35.0%;"/> <col style="width: 35.0%;"/> <col style="width: 25.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: center;">№</th>
+          <th style="text-align: left;">Триггер</th>
+          <th style="text-align: left;">Условие активации</th>
+          <th style="text-align: left;">Применимость</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td style="text-align: left;">
+            <strong>Превышение порога ошибок (Error Rate)</strong>
+          </td>
+          <td style="text-align: left;">Error Rate (5xx) сервиса &gt; 5% на протяжении 30 минут, и стандартный процесс управления инцидентами не локализовал проблему.</td>
+          <td style="text-align: left;">Mission Critical, Business Critical (опубликованные сервисы)</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">2</td>
+          <td style="text-align: left;">
+            <strong>Критический рост задержек (Latency)</strong>
+          </td>
+          <td style="text-align: left;">95-й перцентиль Latency превышает Baseline в 10 раз на протяжении 15 минут. Сервис формально доступен, но пользовательский опыт неприемлем.</td>
+          <td style="text-align: left;">Mission Critical (клиентские сервисы)</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">3</td>
+          <td style="text-align: left;">
+            <strong>Отказ критической внешней зависимости</strong>
+          </td>
+          <td style="text-align: left;">Отказ API стороннего сервиса (платёжный шлюз, SSO-провайдер, облачный балансировщик), без которого ядро сервиса не может функционировать в штатном режиме.</td>
+          <td style="text-align: left;">Все классы критичности</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">4</td>
+          <td style="text-align: left;">
+            <strong>Лавинообразная деградация зависимых сервисов</strong>
+          </td>
+          <td style="text-align: left;">Три и более зависимых сервиса сообщают о деградации, вызванной одним компонентом. Каскадный эффект.</td>
+          <td style="text-align: left;">Mission Critical, Business Critical</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>Порядок действий при SLO-триггере:</strong>
+    </p>
+    <ol>
+      <li>Система мониторинга фиксирует нарушение SLO и генерирует алерт уровня «Critical».</li>
+      <li>Дежурный инженер (L2) предпринимает стандартные процедуры в течение 15 минут.</li>
+      <li>Если проблема не локализована — эскалация на Владельца АС. Владелец АС оценивает, является ли деградация основанием для активации DRP (переключения на резервную Зону доступности) или достаточно применения плана постепенной деградации.</li>
+    </ol>
+    <h3>План постепенной деградации</h3>
+    <p>В условиях ЧС или частичной деградации восстановление может потребовать временного отключения некритичных функций для сохранения работоспособности ядра системы. Настоящий раздел определяет требования к плану постепенной деградации, который является обязательной частью DRP-плана.</p>
+    <h4>1. Обязательные элементы плана</h4>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 5.0%;"/> <col style="width: 30.0%;"/> <col style="width: 40.0%;"/> <col style="width: 25.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: center;">№</th>
+          <th style="text-align: left;">Элемент</th>
+          <th style="text-align: left;">Описание</th>
+          <th style="text-align: left;">Способ реализации</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td style="text-align: left;">
+            <strong>Приоритизация функций</strong>
+          </td>
+          <td style="text-align: left;">Функции сервиса разделены на три уровня: Tier 1 (ядро — обязательно), Tier 2 (важные — отключаются при деградации), Tier 3 (вспомогательные — отключаются первыми).</td>
+          <td style="text-align: left;">
+            <p>
+              <strong>Feature Toggle </strong>(механизм включения/отключения функций сервиса без перевыпуска релиза (например, через конфигурационный файл или админ-панель))</p>
+            <p>
+              <strong>Circuit Breaker</strong> (автоматическое отключение, которое при превышении порога ошибок временно отключает функцию, предотвращая каскадный отказ)</p>
+            <p>Property Flag (переключатель на уровне свойств приложения (environment variable), позволяющий быстро отключить некритичный модуль)</p>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">2</td>
+          <td style="text-align: left;">
+            <strong>Процедуры отключения Tier 3 и Tier 2</strong>
+          </td>
+          <td style="text-align: left;">Пошаговые инструкции по отключению некритичных функций (аналитика, рекомендательные движки, отчёты, второстепенные API).</td>
+          <td style="text-align: left;">Конфигурационные переключатели, балансировщики, API Gateway</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">3</td>
+          <td style="text-align: left;">
+            <strong>Мониторинг ядра после деградации</strong>
+          </td>
+          <td style="text-align: left;">После отключения Tier 2/3 ведётся усиленный мониторинг Tier 1 (Golden Signals) для подтверждения, что ядро стабильно.</td>
+          <td style="text-align: left;">Дашборд мониторинга с фильтром по Tier 1</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">4</td>
+          <td style="text-align: left;">
+            <strong>Процедуры восстановления функций</strong>
+          </td>
+          <td style="text-align: left;">Пошаговые инструкции по обратному включению Tier 2 и Tier 3 после стабилизации ядра.</td>
+          <td style="text-align: left;">Обратная последовательность отключения</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>2. Требования к документированию</h4>
+    <ul>
+      <li>План постепенной деградации включается отдельным разделом в DRP-план каждого критичного ИТ-сервиса.</li>
+      <li>Для каждого уровня (Tier) указывается: перечень функций, влияние на бизнес при отключении, время на отключение, время на восстановление, ответственный за исполнение.</li>
+      <li>План постепенной деградации тестируется в рамках плановых учений (Этап 3) не реже одного раза в год.</li>
     </ul>
     <h3>Операционная последовательность</h3>
     <table class="wrapped relative-table" data-mce-resize="false" style="width: 100.0%;">
@@ -1201,8 +2179,8 @@
           <td style="text-align: left;">
             <strong>Созыв Антикризисного Штаба</strong>
           </td>
-          <td style="text-align: left;">Менеджер процесса оповещает членов Штаба (согласно Плану ОНиВД). Открывается ВКС-комната. Запускается регламент информирования C-Level (см. регламент «Управление технологическими инцидентами»).</td>
-          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">Владелец АС оповещает членов Штаба (согласно Плану ОНиВД). Открывается ВКС-комната. Запускается регламент информирования C-Level (см. регламент «Управление технологическими инцидентами»).</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">Т + 10 минут. Телефон + мессенджер.</td>
         </tr>
         <tr>
@@ -1210,8 +2188,8 @@
           <td style="text-align: left;">
             <strong>Выбор и активация DRP</strong>
           </td>
-          <td style="text-align: left;">Менеджер сервиса определяет, какой DRP-план применим к текущей ЧС. DRP Commander берёт на себя руководство восстановительной командой. Запускаются процедуры восстановления согласно DRP.</td>
-          <td style="text-align: left;">Менеджер сервиса / DRP Commander</td>
+          <td style="text-align: left;">Владелец АС определяет, какой DRP-план применим к текущей ЧС. Координатор DRP берёт на себя руководство восстановительной командой. Запускаются процедуры восстановления согласно DRP.</td>
+          <td style="text-align: left;">Владелец АС / Координатор DRP</td>
           <td style="text-align: left;">Т + 15 минут.</td>
         </tr>
         <tr>
@@ -1220,7 +2198,7 @@
             <strong>Информирование КБ</strong>
           </td>
           <td style="text-align: left;">При ЧС, связанной с кибератакой или компрометацией данных, CISO / офицер ДКБ уведомляется немедленно. Управление инцидентом может перейти к ДКБ.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">Т + 10 минут. Телефон + мессенджер.</td>
         </tr>
         <tr>
@@ -1228,8 +2206,8 @@
           <td style="text-align: left;">
             <strong>Выполнение процедур DRP</strong>
           </td>
-          <td style="text-align: left;">Восстановительная команда выполняет пошаговые процедуры согласно DRP-плану. DRP Commander контролирует время выполнения каждого шага. Ведётся хронометраж для оценки достижения RTO.</td>
-          <td style="text-align: left;">DRP Commander / Восстановительная команда</td>
+          <td style="text-align: left;">Восстановительная команда выполняет пошаговые процедуры согласно DRP-плану. Координатор DRP контролирует время выполнения каждого шага. Ведётся хронометраж для оценки достижения RTO.</td>
+          <td style="text-align: left;">Координатор DRP / Восстановительная команда</td>
           <td style="text-align: left;">В пределах RTO.</td>
         </tr>
         <tr>
@@ -1238,7 +2216,7 @@
             <strong>Верификация восстановления</strong>
           </td>
           <td style="text-align: left;">После завершения процедур DRP выполняется верификация: smoke-тесты, контроль Golden Signals, проверка целостности данных. Подтверждение от Владельца сервиса.</td>
-          <td style="text-align: left;">Технический специалист / DRP Commander</td>
+          <td style="text-align: left;">Координатор DRP / Восстановительная команда</td>
           <td style="text-align: left;">В течение 30 минут после завершения DRP.</td>
         </tr>
         <tr>
@@ -1246,8 +2224,8 @@
           <td style="text-align: left;">
             <strong>Возврат к штатному режиму</strong>
           </td>
-          <td style="text-align: left;">Планирование и выполнение обратного переключения на основную площадку (если применимо). Синхронизация данных. Отключение резервной площадки.</td>
-          <td style="text-align: left;">Менеджер сервиса / Технический специалист</td>
+          <td style="text-align: left;">Планирование и выполнение обратного переключения на основную площадку (если применимо). Синхронизация данных. Отключение резервной Зоны доступности.</td>
+          <td style="text-align: left;">Владелец АС / Восстановительная команда</td>
           <td style="text-align: left;">По плану, согласованному с бизнесом.</td>
         </tr>
         <tr>
@@ -1256,7 +2234,7 @@
             <strong>Пост-анализ (Post-Incident Review)</strong>
           </td>
           <td style="text-align: left;">Анализ хронологии, оценка фактических RTO/RPO, сравнение с целевыми. Выявление отклонений. Формирование корректирующих мероприятий. При необходимости — пересмотр DRP.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
+          <td style="text-align: left;">Владелец АС</td>
           <td style="text-align: left;">В течение 5 рабочих дней после завершения ЧС.</td>
         </tr>
       </tbody>
@@ -1278,30 +2256,89 @@
             <strong>1. Технический</strong>
           </td>
           <td style="text-align: left;">Отказ отдельного шага DRP (например, не удалось восстановить БД из бэкапа)</td>
-          <td style="text-align: left;">DRP Commander пытается выполнить альтернативную процедуру, предусмотренную DRP. Если альтернативы нет — переход на уровень 2.</td>
+          <td style="text-align: left;">Координатор DRP пытается выполнить альтернативную процедуру, предусмотренную DRP. Если альтернативы нет — переход на уровень 2.</td>
         </tr>
         <tr>
           <td style="text-align: left;">
             <strong>2. Управленческий</strong>
           </td>
           <td style="text-align: left;">Альтернативные процедуры не дали результата. RTO под угрозой.</td>
-          <td style="text-align: left;">DRP Commander информирует Менеджера сервиса и Менеджера процесса. Созывается экстренное заседание Антикризисного Штаба. Принимается решение: продолжение восстановления с превышением RTO или переход на ручное управление бизнес-процессом.</td>
+          <td style="text-align: left;">Координатор DRP информирует Владельца АС и Менеджера процесса. Созывается экстренное заседание Антикризисного Штаба. Принимается решение: продолжение восстановления с превышением RTO или переход на ручное управление бизнес-процессом.</td>
         </tr>
         <tr>
           <td style="text-align: left;">
             <strong>3. Стратегический</strong>
           </td>
           <td style="text-align: left;">RTO превышен более чем в 2 раза. MTPD под угрозой.</td>
-          <td style="text-align: left;">Менеджер процесса докладывает Владельцу процесса и Директору по ИТ. Принимается решение об активации внешних ресурсов (вендор, подрядчик) или о временной приостановке некритичных сервисов для высвобождения ресурсов. Инцидент регистрируется как ВПИ (см. регламент «Управление технологическими инцидентами»).</td>
+          <td style="text-align: left;">Владелец АС докладывает Владельцу процесса и Директору по ИТ. Принимается решение об активации внешних ресурсов (вендор, подрядчик) или о временной приостановке некритичных сервисов для высвобождения ресурсов. Инцидент регистрируется как ВПИ (см. регламент «Управление технологическими инцидентами»).</td>
         </tr>
       </tbody>
     </table>
+    <h3>Процедура Аварийного доступа</h3>
+    <p>В условиях ЧС стандартные механизмы аутентификации (Active Directory, SSO, MFA) могут быть недоступны. Настоящий раздел определяет порядок активации аварийных учётных записей для восстановительной команды.</p>
+    <h4>1. Условия активации Аварийного доступа</h4>
+    <p>Процедура активируется при наступлении любого из следующих условий:</p>
+    <ul>
+      <li>Недоступность контроллеров домена (Active Directory) на всех площадках.</li>
+      <li>Недоступность системы Multi-Factor Authentication (MFA).</li>
+      <li>Компрометация привилегированных учётных записей, исключающая их использование.</li>
+      <li>Иное событие, квалифицированное как ЧС и требующее аварийного доступа к критичным системам.</li>
+    </ul>
+    <h4>2. Хранение учётных данных Аварийного доступа</h4>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 25.0%;"/> <col style="width: 40.0%;"/> <col style="width: 35.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: left;">Способ хранения</th>
+          <th style="text-align: left;">Описание</th>
+          <th style="text-align: left;">Применение</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left;">
+            <strong>Физический сейф</strong>
+          </td>
+          <td style="text-align: left;">Пароль администратора домена (Domain Admin) и локальные пароли администраторов критичных систем хранятся в опечатанном конверте в физическом сейфе на территории Компании. Доступ к сейфу — у ограниченного круга лиц (Председатель Антикризисного Штаба, CISO).</td>
+          <td style="text-align: left;">Обязательно для Mission Critical систем</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">
+            <strong>PAM-система с локальным резервным доступом</strong>
+          </td>
+          <td style="text-align: left;">Привилегированные учётные записи управляются через PAM (Privileged Access Management). На случай недоступности PAM настроен локальный резервный доступ с паролями, хранящимися отдельно от продуктивной среды.</td>
+          <td style="text-align: left;">Рекомендовано для Business Critical систем</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>3. Порядок активации</h4>
+    <ol>
+      <li>
+        <strong>Инициирование:</strong> Координатор DRP или Владелец АС запрашивает активацию Аварийного доступа у Председателя Антикризисного Штаба. Запрос фиксируется в оперативном чате.</li>
+      <li>
+        <strong>Авторизация:</strong> Председатель Штаба единолично принимает решение об активации. CISO подтверждает допустимость для сценариев, связанных с кибератакой.</li>
+      <li>
+        <strong>Выдача доступа:</strong> Конверт с паролями вскрывается в присутствии не менее двух членов Штаба. Факт вскрытия документируется (фото конверта с подписями).</li>
+      <li>
+        <strong>Использование:</strong> Каждый участник восстановительной команды получает строго одну учётную запись. Передача учётных данных между участниками запрещена.</li>
+      <li>
+        <strong>Логирование:</strong> Все действия под учётными записями Аварийного доступа фиксируются в локальных логах целевых систем и, по возможности, реплицируются на изолированный лог-сервер.</li>
+    </ol>
+    <h4>4. Завершение процедуры Аварийного доступа</h4>
+    <p>После завершения PIR (шаг 5.8) и возврата к штатному режиму в течение <strong>5 рабочих дней</strong> выполняются следующие действия:</p>
+    <ul>
+      <li>Все учётные записи Аварийного доступа принудительно отзываются или блокируются.</li>
+      <li>Пароли меняются на новые, конверты переоформляются и опечатываются.</li>
+      <li>Логи использования учётных записей Аварийного доступа анализируются CISO/ДКБ. Результаты анализа включаются в отчёт PIR.</li>
+      <li>Факт переоформления конвертов фиксируется в ITSM-системе.</li>
+    </ul>
     <h3>Критерии качества этапа</h3>
     <ul>
       <li>Антикризисный Штаб созван в течение 10 минут после объявления ЧС.</li>
       <li>DRP-план активирован в течение 15 минут после объявления ЧС.</li>
       <li>Фактическое время восстановления (RTO факт) не превысило целевое значение, зафиксированное в DRP.</li>
       <li>Пост-анализ проведён, корректирующие мероприятия зафиксированы в ITSM-системе в течение 5 рабочих дней.</li>
+      <li>Архитектурная документация (As-Built) актуализирована в течение 5 рабочих дней после завершения PIR, если в ходе восстановления вносились изменения «на лету».</li>
     </ul>
   </ac:rich-text-body>
 </ac:structured-macro>
@@ -1666,8 +2703,191 @@
       <li>Операционные метрики (раздел 2) рассчитываются <strong>ежемесячно</strong> и анализируются на Ежемесячном оперативном разборе процесса непрерывности.</li>
       <li>Метрики M 2.2 и M 2.3 (успешность учений) рассчитываются по факту проведения каждых учений и включаются в отчёт по итогам учений.</li>
       <li>Целевые значения KPI пересматриваются не реже <strong>одного раза в год</strong> на основе исторических данных и стратегических целей Компании.</li>
-      <li>При отклонении K<sub>1</sub> ниже 100% Менеджер процесса инициирует внеплановую проверку причин и выносит результаты на Архитектурно-процессный комитет.</li>
+      <li>При отклонении K<sub>1</sub> ниже 100% Владелец АС инициирует внеплановую проверку причин и выносит результаты на Архитектурно-процессный комитет.</li>
     </ul>
+  </ac:rich-text-body>
+</ac:structured-macro>
+<ac:structured-macro ac:macro-id="calendar-block" ac:name="expand" ac:schema-version="1">
+  <ac:parameter ac:name="title">Календарь активностей процесса</ac:parameter>
+  <ac:rich-text-body>
+    <p>Настоящая таблица сводит воедино все регулярные активности процесса управления непрерывностью технологий, их периодичность, ответственных и связь с шагами процесса.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 20.0%;"/> <col style="width: 25.0%;"/> <col style="width: 30.0%;"/> <col style="width: 25.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: left;">Периодичность</th>
+          <th style="text-align: left;">Активность</th>
+          <th style="text-align: left;">Описание</th>
+          <th style="text-align: left;">Ответственный</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background-color: rgb(244,245,247);">
+          <td colspan="4" style="text-align: left;">
+            <strong>Ежегодно</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежегодно, до 31 января</td>
+          <td style="text-align: left;">Актуализация модели угроз</td>
+          <td style="text-align: left;">Пересмотр перечня угроз, исключение неактуальных, добавление новых. Утверждение СТО и CISO.</td>
+          <td style="text-align: left;">Менеджер процесса (шаг 1.1)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежегодно</td>
+          <td style="text-align: left;">Актуализация плана ОНиВД</td>
+          <td style="text-align: left;">Анализ изменений, влияющих на ОНиВД. Актуализация сводного плана, памяток, списков.</td>
+          <td style="text-align: left;">Менеджер процесса (шаг 2.3)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежегодно</td>
+          <td style="text-align: left;">Актуализация DRP-планов</td>
+          <td style="text-align: left;">Проверка актуальности всех DRP-планов. Сверка с CMDB, архитектурными схемами, списками команд.</td>
+          <td style="text-align: left;">Владелец АС (шаг 2.1)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежегодно</td>
+          <td style="text-align: left;">Полномасштабные учения (Full-Scale Test)</td>
+          <td style="text-align: left;">Для Mission Critical и Business Critical сервисов. Реальное переключение на резервную площадку.</td>
+          <td style="text-align: left;">Менеджер процесса (шаг 3.1)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежегодно</td>
+          <td style="text-align: left;">Тестирование сценария Split-Brain</td>
+          <td style="text-align: left;">Для Mission Critical систем с георезервированием.</td>
+          <td style="text-align: left;">Менеджер процесса / ИТ Архитектор (шаг 3.1)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежегодно</td>
+          <td style="text-align: left;">Тестирование Graceful Degradation</td>
+          <td style="text-align: left;">Проверка плана постепенной деградации для критичных сервисов.</td>
+          <td style="text-align: left;">Менеджер процесса (шаг 3.1)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежегодно</td>
+          <td style="text-align: left;">Пересмотр целевых значений KPI</td>
+          <td style="text-align: left;">На основе исторических данных и стратегических целей Компании.</td>
+          <td style="text-align: left;">Менеджер процесса (Этап 6)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежегодно</td>
+          <td style="text-align: left;">Пересмотр графика обновлений</td>
+          <td style="text-align: left;">Актуализация периодичности проверки обновлений для ПО.</td>
+          <td style="text-align: left;">Менеджер процесса (Этап 6)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежегодно</td>
+          <td style="text-align: left;">Самооценка уровня зрелости процесса</td>
+          <td style="text-align: left;">Оценка текущего уровня зрелости, определение вектора развития.</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+        </tr>
+        <tr style="background-color: rgb(244,245,247);">
+          <td colspan="4" style="text-align: left;">
+            <strong>Ежеквартально</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежеквартально</td>
+          <td style="text-align: left;">Tabletop Exercise (штабные учения) для Mission Critical</td>
+          <td style="text-align: left;">Пошаговое прохождение DRP-плана без реального переключения. Проверка актуальности контактов и процедур.</td>
+          <td style="text-align: left;">Менеджер процесса (шаг 3.1)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежеквартально</td>
+          <td style="text-align: left;">Актуализация списков восстановительных команд</td>
+          <td style="text-align: left;">Проверка состава: исключение уволившихся, добавление новых, актуализация контактов.</td>
+          <td style="text-align: left;">Менеджер процесса (шаг 4.1)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежеквартально</td>
+          <td style="text-align: left;">Тестовое восстановление из бэкапов (Mission Critical)</td>
+          <td style="text-align: left;">Развёртывание бэкапа на изолированном стенде. Проверка целостности, smoke-тесты.</td>
+          <td style="text-align: left;">Технический специалист</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежеквартально</td>
+          <td style="text-align: left;">Пересмотр рисков непрерывности</td>
+          <td style="text-align: left;">Актуализация статусов рисков, проверка сроков митигации, выявление просроченных.</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежеквартально</td>
+          <td style="text-align: left;">Синхронизация с корпоративным Реестром рисков</td>
+          <td style="text-align: left;">Выгрузка критичных рисков непрерывности в корпоративный Реестр.</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежеквартально</td>
+          <td style="text-align: left;">Проверка георезервирования (Mission Critical)</td>
+          <td style="text-align: left;">Тестовое переключение на резервную площадку для подтверждения достижимости RTO/RPO.</td>
+          <td style="text-align: left;">Владелец АС / ИТ ИТ Архитектор</td>
+        </tr>
+        <tr style="background-color: rgb(244,245,247);">
+          <td colspan="4" style="text-align: left;">
+            <strong>Ежемесячно</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежемесячно</td>
+          <td style="text-align: left;">Расчёт KPI процесса</td>
+          <td style="text-align: left;">Стратегический KPI (наличие протестированного DRP) и операционные метрики.</td>
+          <td style="text-align: left;">Менеджер процесса (Этап 6)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежемесячно</td>
+          <td style="text-align: left;">Архитектурно-процессный комитет</td>
+          <td style="text-align: left;">Анализ KPI, аудит DRP, валидация архитектурного долга, утверждение планов митигации.</td>
+          <td style="text-align: left;">Менеджер процесса / ИТ ИТ Архитектор / Владелец процесса</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежемесячно</td>
+          <td style="text-align: left;">Мониторинг Реестра исключений</td>
+          <td style="text-align: left;">Проверка сроков исключений, уведомление о приближающихся сроках.</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Ежемесячно</td>
+          <td style="text-align: left;">Контроль актуализации DRP после изменений</td>
+          <td style="text-align: left;">Проверка ЗНИ с флагом «Влияет на непрерывность», контроль сроков актуализации.</td>
+          <td style="text-align: left;">Менеджер процесса (шаг 4.2)</td>
+        </tr>
+        <tr style="background-color: rgb(244,245,247);">
+          <td colspan="4" style="text-align: left;">
+            <strong>По факту (event-driven)</strong>
+          </td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">При вводе нового ИТ-сервиса</td>
+          <td style="text-align: left;">Определение критичности и RTO/RPO</td>
+          <td style="text-align: left;">ИТ Архитектор определяет класс критичности, рассчитывает показатели. Запускает ветку 1.2 → 1.3 → 2.1.</td>
+          <td style="text-align: left;">ИТ ИТ Архитектор (шаг 1.2)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">При существенном архитектурном изменении</td>
+          <td style="text-align: left;">Актуализация DRP-плана</td>
+          <td style="text-align: left;">В течение 15 рабочих дней после завершения изменения. Запускает ветку 2.1 → 2.2.</td>
+          <td style="text-align: left;">Владелец АС (шаг 4.2)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">При выявлении новой угрозы</td>
+          <td style="text-align: left;">Внеплановая актуализация модели угроз</td>
+          <td style="text-align: left;">Дополнение модели, оценка влияния на существующие DRP.</td>
+          <td style="text-align: left;">Менеджер процесса (шаг 1.1)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">При наступлении ЧС</td>
+          <td style="text-align: left;">Активация DRP</td>
+          <td style="text-align: left;">Объявление ЧС → созыв Штаба → выбор DRP → выполнение процедур → PIR.</td>
+          <td style="text-align: left;">Директор по ИТ / Менеджер процесса (Этап 5)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">После завершения PIR</td>
+          <td style="text-align: left;">Актуализация архитектурной документации (As-Built)</td>
+          <td style="text-align: left;">В течение 5 рабочих дней после PIR, если в ходе восстановления вносились изменения «на лету».</td>
+          <td style="text-align: left;">ИТ ИТ Архитектор (шаг 5.8)</td>
+        </tr>
+      </tbody>
+    </table>
   </ac:rich-text-body>
 </ac:structured-macro>
 <ac:structured-macro ac:macro-id="drp-criteria-block" ac:name="expand" ac:schema-version="1">
@@ -1679,7 +2899,7 @@
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 5.0%;"/> <col style="width: 30.0%;"/> <col style="width: 40.0%;"/> <col style="width: 25.0%;"/> </colgroup>
       <thead>
-        <tr style="background-color: rgb(244,245,247);">
+        <tr>
           <th style="text-align: center;">№</th>
           <th style="text-align: left;">Критерий</th>
           <th style="text-align: left;">Описание</th>
@@ -1692,7 +2912,7 @@
           <td style="text-align: left;">
             <strong>Класс критичности Mission Critical</strong>
           </td>
-          <td style="text-align: left;">ИТ-сервис отнесён к классу Mission Critical («Боевое дежурство»). Выход из строя влечёт невосполнимые потери для бизнеса. Требуется полное многократное резервирование, включая удалённый ЦОД.</td>
+          <td style="text-align: left;">ИТ-сервис отнесён к классу Mission Critical («Боевое дежурство»). Выход из строя влечёт невосполнимые потери для бизнеса. Требуется полное многократное резервирование, включая резервную Зону доступности.</td>
           <td style="text-align: left;">CMDB (атрибут КЕ)</td>
         </tr>
         <tr>
@@ -1726,7 +2946,7 @@
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 5.0%;"/> <col style="width: 30.0%;"/> <col style="width: 40.0%;"/> <col style="width: 25.0%;"/> </colgroup>
       <thead>
-        <tr style="background-color: rgb(244,245,247);">
+        <tr>
           <th style="text-align: center;">№</th>
           <th style="text-align: left;">Критерий</th>
           <th style="text-align: left;">Описание</th>
@@ -1772,7 +2992,7 @@
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 20.0%;"/> <col style="width: 40.0%;"/> <col style="width: 40.0%;"/> </colgroup>
       <thead>
-        <tr style="background-color: rgb(244,245,247);">
+        <tr>
           <th style="text-align: left;">Класс критичности</th>
           <th style="text-align: left;">DRP-план</th>
           <th style="text-align: left;">Резервное копирование</th>
@@ -1784,7 +3004,7 @@
             <strong>Mission Critical</strong>
           </td>
           <td style="text-align: left;">✅ Обязателен. Полный DRP с резервной площадкой.</td>
-          <td style="text-align: left;">✅ Обязательно. RPO ≤ 1 час. Репликация в резервный ЦОД.</td>
+          <td style="text-align: left;">✅ Обязательно. RPO ≤ 1 час. Репликация в резервную Зону доступности.</td>
         </tr>
         <tr>
           <td style="text-align: left;">
@@ -1811,12 +3031,256 @@
     </table>
     <h3>4. Порядок определения критериев при вводе сервиса в эксплуатацию</h3>
     <ol>
-      <li>При создании ЗНИ на ввод нового ИТ-сервиса в эксплуатацию Менеджер сервиса заполняет атрибут «Класс критичности» в CMDB.</li>
+      <li>При создании ЗНИ на ввод нового ИТ-сервиса в эксплуатацию Владелец АС заполняет атрибут «Класс критичности» в CMDB.</li>
       <li>На основании класса критичности ITSM-система автоматически определяет необходимость DRP и резервного копирования согласно таблице п. 3.</li>
       <li>Если DRP обязателен — создаётся подзадача на разработку DRP-плана (шаг 2.1 процесса).</li>
       <li>Если резервное копирование обязательно — создаётся подзадача на настройку бэкапа с указанием RPO.</li>
-      <li>Менеджер процесса контролирует выполнение подзадач. При отсутствии DRP через 30 дней после ввода — эскалация на Владельца процесса.</li>
+      <li>Владелец АС контролирует выполнение подзадач. При отсутствии DRP через 30 дней после ввода — эскалация на Владельца процесса.</li>
     </ol>
+  </ac:rich-text-body>
+</ac:structured-macro>
+<ac:structured-macro ac:macro-id="onivd-content-block" ac:name="expand" ac:schema-version="1">
+  <ac:parameter ac:name="title">Состав и требования к содержанию Плана ОНиВД (BCP)</ac:parameter>
+  <ac:rich-text-body>
+    <p>План обеспечения непрерывности и восстановления деятельности (ОНиВД) — это документ стратегического уровня, определяющий порядок действий организации в целом при наступлении ЧС. Разрабатывается <strong>один</strong> на организацию (или на ДЗО).</p>
+    <h3>1. Обязательные разделы Плана ОНиВД</h3>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 5.0%;"/> <col style="width: 25.0%;"/> <col style="width: 45.0%;"/> <col style="width: 25.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: center;">№</th>
+          <th style="text-align: left;">Раздел</th>
+          <th style="text-align: left;">Содержание</th>
+          <th style="text-align: left;">Ответственный</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td style="text-align: left;">
+            <strong>Общие положения</strong>
+          </td>
+          <td style="text-align: left;">Цели плана, охват (на какие подразделения и бизнес-процессы распространяется), основание для разработки. Ссылки на нормативные документы.</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">2</td>
+          <td style="text-align: left;">
+            <strong>Система управления при ЧС</strong>
+          </td>
+          <td style="text-align: left;">Состав, функции и порядок организации <strong>Антикризисного Штаба</strong>. Порядок созыва, принятия решений, коммуникации. Список членов Штаба с контактами.</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">3</td>
+          <td style="text-align: left;">
+            <strong>Перечень критичных бизнес-процессов</strong>
+          </td>
+          <td style="text-align: left;">Список бизнес-процессов, которые должны быть восстановлены в первую очередь. Привязка к критичным ИТ-сервисам (Mission Critical / Business Critical). Приоритеты восстановления.</td>
+          <td style="text-align: left;">Владелец АС + Владельцы бизнес-процессов</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">4</td>
+          <td style="text-align: left;">
+            <strong>Инструменты резервирования</strong>
+          </td>
+          <td style="text-align: left;">Описание доступных инструментов: перевод на другую площадку, удалённые рабочие места, ЗУД, резервный персонал. Условия применения каждого инструмента.</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">5</td>
+          <td style="text-align: left;">
+            <strong>Сценарии реагирования</strong>
+          </td>
+          <td style="text-align: left;">Типовые сценарии ЧС (потеря ЦОД, потеря сети, кибератака, пожар) и порядок действий для каждого. Привязка к конкретным DRP-планам.</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">6</td>
+          <td style="text-align: left;">
+            <strong>Порядок поддержания готовности</strong>
+          </td>
+          <td style="text-align: left;">Периодичность учений (не реже 1 раза в год). Критерии успешности. Порядок документирования итогов. Процедура корректирующих мероприятий.</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">7</td>
+          <td style="text-align: left;">
+            <strong>Ссылки на DRP-планы</strong>
+          </td>
+          <td style="text-align: left;">Перечень всех DRP-планов с гиперссылками и указанием ответственных Менеджеров сервисов.</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>2. Отличие ОНиВД от DRP</h3>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 25.0%;"/> <col style="width: 37.5%;"/> <col style="width: 37.5%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: left;">Параметр</th>
+          <th style="text-align: left;">ОНиВД (BCP)</th>
+          <th style="text-align: left;">DRP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left;">Уровень</td>
+          <td style="text-align: left;">Стратегический и тактический</td>
+          <td style="text-align: left;">Технический и операционный</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Фокус</td>
+          <td style="text-align: left;">Бизнес-процессы: как организация продолжает работать</td>
+          <td style="text-align: left;">ИТ-инфраструктура: как восстановить конкретный сервис</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Количество</td>
+          <td style="text-align: left;">Один на организацию / ДЗО</td>
+          <td style="text-align: left;">По одному на каждый критичный ИТ-сервис</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Разрабатывает</td>
+          <td style="text-align: left;">Владелец АС непрерывности</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Утверждает</td>
+          <td style="text-align: left;">Владелец процесса / Директор по ИТ</td>
+          <td style="text-align: left;">Владелец АС / CAB (при необходимости)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Основной вопрос</td>
+          <td style="text-align: left;">«Как мы будем обслуживать клиентов, если ЦОД недоступен?»</td>
+          <td style="text-align: left;">«Как восстановить почтовый сервер за 1 час после отказа ЦОД?»</td>
+        </tr>
+      </tbody>
+    </table>
+  </ac:rich-text-body>
+</ac:structured-macro>
+<ac:structured-macro ac:macro-id="drp-content-block" ac:name="expand" ac:schema-version="1">
+  <ac:parameter ac:name="title">Состав и требования к содержанию DRP-плана</ac:parameter>
+  <ac:rich-text-body>
+    <p>План аварийного восстановления (DRP) — это технический документ, определяющий пошаговые процедуры восстановления <strong>конкретного ИТ-сервиса</strong> после катастрофы. Разрабатывается <strong>для каждого</strong> ИТ-сервиса, удовлетворяющего критериям обязательности DRP.</p>
+    <h3>1. Обязательные разделы DRP-плана</h3>
+    <p>Структура DRP-плана должна соответствовать утверждённому шаблону. Допускается добавление дополнительных разделов, специфичных для конкретного ИТ-сервиса.</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 5.0%;"/> <col style="width: 25.0%;"/> <col style="width: 45.0%;"/> <col style="width: 25.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: center;">№</th>
+          <th style="text-align: left;">Раздел</th>
+          <th style="text-align: left;">Содержание</th>
+          <th style="text-align: left;">Ответственный</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td style="text-align: left;">
+            <strong>Объекты</strong>
+          </td>
+          <td style="text-align: left;">Перечень компонентов ИТ-сервиса с указанием модели облачного сервиса (IaaS/PaaS), отказоустойчивости и способа резервного копирования.</td>
+          <td style="text-align: left;">Технический специалист</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">2</td>
+          <td style="text-align: left;">
+            <strong>Режим работы и целевые показатели восстановления</strong>
+          </td>
+          <td style="text-align: left;">Режим работы системы (24/7, 9-18). RTO, RPO, MTPD. Рассчитываются по методике раздела «Критерии и правила расчёта RTO и RPO».</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">3</td>
+          <td style="text-align: left;">
+            <strong>Основание для активации DRP</strong>
+          </td>
+          <td style="text-align: left;">Кто принимает решение об активации. Условия активации. Порядок эскалации. Ссылка на План ОНиВД.</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">4</td>
+          <td style="text-align: left;">
+            <strong>Перечень уведомляемых лиц</strong>
+          </td>
+          <td style="text-align: left;">Список сотрудников, которых необходимо уведомить об аварии (роль, контакты).</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">5</td>
+          <td style="text-align: left;">
+            <strong>Команда восстановления</strong>
+          </td>
+          <td style="text-align: left;">Список участников с ролями и контактами. Обязательно указание <strong>Координатор DRP</strong> — руководителя восстановительных работ.</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">6</td>
+          <td style="text-align: left;">
+            <strong>Способы резервирования</strong>
+          </td>
+          <td style="text-align: left;">Описание: что копируется, периодичность (привязана к RPO), место хранения, процедура проверки целостности.</td>
+          <td style="text-align: left;">Технический специалист</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">7</td>
+          <td style="text-align: left;">
+            <strong>Сценарии потери работоспособности</strong>
+          </td>
+          <td style="text-align: left;">Матрица сценариев с указанием применимости для каждого класса критичности. Сценарий «Полная потеря основной площадки (ЦОД)» обязателен.</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">8</td>
+          <td style="text-align: left;">
+            <strong>Действия по сценариям</strong>
+          </td>
+          <td style="text-align: left;">Пошаговые таблицы для каждого сценария: №, действие, исполнитель, срок. Каждый сценарий завершается верификацией восстановления.</td>
+          <td style="text-align: left;">Технический специалист</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">9</td>
+          <td style="text-align: left;">
+            <strong>План постепенной деградации</strong>
+          </td>
+          <td style="text-align: left;">Разделение функций сервиса на три уровня (Tier 1 — ядро, Tier 2 — важные, Tier 3 — вспомогательные). Пошаговые процедуры отключения Tier 3 и Tier 2, мониторинг ядра после деградации, процедуры обратного включения. Тестируется в рамках учений не реже 1 раза в год.</td>
+          <td style="text-align: left;">Владелец АС / ИТ ИТ Архитектор</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">10</td>
+          <td style="text-align: left;">
+            <strong>Дополнительно</strong>
+          </td>
+          <td style="text-align: left;">Ссылки на инструкции по бэкапу, DRP смежных систем, внешние инструкции вендоров.</td>
+          <td style="text-align: left;">Технический специалист</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">11</td>
+          <td style="text-align: left;">
+            <strong>История изменений</strong>
+          </td>
+          <td style="text-align: left;">Таблица версий: дата, автор, описание изменений.</td>
+          <td style="text-align: left;">Владелец АС</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>2. Требования к процедурам восстановления (раздел 5 DRP)</h3>
+    <p>Процедуры восстановления должны быть:</p>
+    <ul>
+      <li>
+        <strong>Пошаговыми:</strong> каждый шаг описывает конкретное действие, которое можно выполнить без дополнительных разъяснений.</li>
+      <li>
+        <strong>Проверяемыми:</strong> для каждого шага указан ожидаемый результат и способ его проверки.</li>
+      <li>
+        <strong>Хронометрируемыми:</strong> для каждого шага указано ориентировочное время выполнения (используется при учениях для оценки достижимости RTO).</li>
+      <li>
+        <strong>Независимыми от исполнителя:</strong> любой участник восстановительной команды с соответствующими правами доступа должен суметь выполнить процедуру.</li>
+    </ul>
+    <h3>3. Привязка DRP к Плану ОНиВД</h3>
+    <p>Каждый DRP-план является приложением к Плану ОНиВД. В Плане ОНиВД (раздел 7) содержится перечень всех DRP-планов с гиперссылками. При актуализации DRP Владелец АС уведомляет Менеджера процесса для проверки актуальности ссылок в ОНиВД.</p>
+    <h3>4. Шаблон DRP</h3>
+    <p>Полный шаблон DRP-плана с предзаполненной структурой приведён в <strong>Приложении 1</strong> к настоящему Регламенту.</p>
   </ac:rich-text-body>
 </ac:structured-macro>
 <ac:structured-macro ac:macro-id="rto-rpo-block" ac:name="expand" ac:schema-version="1">
@@ -1827,7 +3291,7 @@
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 20.0%;"/> <col style="width: 50.0%;"/> <col style="width: 30.0%;"/> </colgroup>
       <thead>
-        <tr style="background-color: rgb(244,245,247);">
+        <tr>
           <th style="text-align: left;">Показатель</th>
           <th style="text-align: left;">Определение</th>
           <th style="text-align: left;">Пример</th>
@@ -1839,7 +3303,7 @@
             <strong>RTO</strong> <br/>
             <em>(Recovery Time Objective)</em>
           </td>
-          <td style="text-align: left;">Целевое время восстановления — максимально допустимое время от момента объявления ЧС до момента восстановления функционирования ИТ-сервиса. Включает: время на принятие решения, активацию резервной площадки, развёртывание сервиса, верификацию.</td>
+          <td style="text-align: left;">Целевое время восстановления — максимально допустимое время от момента объявления ЧС до момента восстановления функционирования ИТ-сервиса. Включает: время на принятие решения, активацию резервной Зоны доступности, развёртывание сервиса, верификацию.</td>
           <td style="text-align: left;">RTO = 4 часа: через 4 часа после объявления ЧС сервис должен быть доступен пользователям</td>
         </tr>
         <tr>
@@ -1865,7 +3329,7 @@
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 25.0%;"/> <col style="width: 25.0%;"/> <col style="width: 25.0%;"/> <col style="width: 25.0%;"/> </colgroup>
       <thead>
-        <tr style="background-color: rgb(244,245,247);">
+        <tr>
           <th style="text-align: left;">Класс критичности</th>
           <th style="text-align: left;">Базовый RTO</th>
           <th style="text-align: left;">Базовый RPO</th>
@@ -1912,7 +3376,7 @@
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 5.0%;"/> <col style="width: 25.0%;"/> <col style="width: 40.0%;"/> <col style="width: 30.0%;"/> </colgroup>
       <thead>
-        <tr style="background-color: rgb(244,245,247);">
+        <tr>
           <th style="text-align: center;">№</th>
           <th style="text-align: left;">Фактор</th>
           <th style="text-align: left;">Описание влияния</th>
@@ -1966,7 +3430,7 @@
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 5.0%;"/> <col style="width: 25.0%;"/> <col style="width: 40.0%;"/> <col style="width: 30.0%;"/> </colgroup>
       <thead>
-        <tr style="background-color: rgb(244,245,247);">
+        <tr>
           <th style="text-align: center;">№</th>
           <th style="text-align: left;">Фактор</th>
           <th style="text-align: left;">Описание влияния</th>
@@ -2010,9 +3474,9 @@
     </table>
     <h3>5. Правило согласования RTO/RPO</h3>
     <ol>
-      <li>Менеджер сервиса рассчитывает RTO/RPO на основе базовых значений (п. 2) и факторов влияния (пп. 3, 4).</li>
+      <li>Владелец АС рассчитывает RTO/RPO на основе базовых значений (п. 2) и факторов влияния (пп. 3, 4).</li>
       <li>Рассчитанные значения выносятся на согласование с бизнес-заказчиком.</li>
-      <li>Если бизнес-заказчик требует более жёсткие RTO/RPO, чем технически достижимые — Менеджер сервиса фиксирует расхождение и оценивает стоимость достижения требуемых показателей (модернизация инфраструктуры, репликация, горячий резерв).</li>
+      <li>Если бизнес-заказчик требует более жёсткие RTO/RPO, чем технически достижимые — Владелец АС фиксирует расхождение и оценивает стоимость достижения требуемых показателей (модернизация инфраструктуры, репликация, горячий резерв).</li>
       <li>Решение принимается на основании соотношения «стоимость достижения RTO/RPO vs потери от простоя». При невозможности достижения — регистрируется риск с указанием остаточного RTO/RPO.</li>
       <li>Согласованные значения фиксируются в DRP-плане (Приложение 1 к Регламенту) и используются как целевые при проведении учений.</li>
     </ol>
@@ -2020,7 +3484,7 @@
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 25.0%;"/> <col style="width: 75.0%;"/> </colgroup>
       <thead>
-        <tr style="background-color: rgb(244,245,247);">
+        <tr>
           <th style="text-align: left;">Параметр</th>
           <th style="text-align: left;">Значение</th>
         </tr>
@@ -2084,242 +3548,6 @@
     </table>
   </ac:rich-text-body>
 </ac:structured-macro>
-<ac:structured-macro ac:macro-id="onivd-content-block" ac:name="expand" ac:schema-version="1">
-  <ac:parameter ac:name="title">Состав и требования к содержанию Плана ОНиВД (BCP)</ac:parameter>
-  <ac:rich-text-body>
-    <p>План обеспечения непрерывности и восстановления деятельности (ОНиВД) — это документ стратегического уровня, определяющий порядок действий организации в целом при наступлении ЧС. Разрабатывается <strong>один</strong> на организацию (или на ДЗО).</p>
-    <h3>1. Обязательные разделы Плана ОНиВД</h3>
-    <table class="wrapped relative-table" style="width: 100.0%;">
-      <colgroup> <col style="width: 5.0%;"/> <col style="width: 25.0%;"/> <col style="width: 45.0%;"/> <col style="width: 25.0%;"/> </colgroup>
-      <thead>
-        <tr style="background-color: rgb(244,245,247);">
-          <th style="text-align: center;">№</th>
-          <th style="text-align: left;">Раздел</th>
-          <th style="text-align: left;">Содержание</th>
-          <th style="text-align: left;">Ответственный</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="text-align: center;">1</td>
-          <td style="text-align: left;">
-            <strong>Общие положения</strong>
-          </td>
-          <td style="text-align: left;">Цели плана, охват (на какие подразделения и бизнес-процессы распространяется), основание для разработки. Ссылки на нормативные документы.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">2</td>
-          <td style="text-align: left;">
-            <strong>Система управления при ЧС</strong>
-          </td>
-          <td style="text-align: left;">Состав, функции и порядок организации <strong>Антикризисного Штаба</strong>. Порядок созыва, принятия решений, коммуникации. Список членов Штаба с контактами.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">3</td>
-          <td style="text-align: left;">
-            <strong>Перечень критичных бизнес-процессов</strong>
-          </td>
-          <td style="text-align: left;">Список бизнес-процессов, которые должны быть восстановлены в первую очередь. Привязка к критичным ИТ-сервисам (Mission Critical / Business Critical). Приоритеты восстановления.</td>
-          <td style="text-align: left;">Менеджер процесса + Владельцы бизнес-процессов</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">4</td>
-          <td style="text-align: left;">
-            <strong>Инструменты резервирования</strong>
-          </td>
-          <td style="text-align: left;">Описание доступных инструментов: перевод на другую площадку, удалённые рабочие места, ЗУД, резервный персонал. Условия применения каждого инструмента.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">5</td>
-          <td style="text-align: left;">
-            <strong>Сценарии реагирования</strong>
-          </td>
-          <td style="text-align: left;">Типовые сценарии ЧС (потеря ЦОД, потеря сети, кибератака, пожар) и порядок действий для каждого. Привязка к конкретным DRP-планам.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">6</td>
-          <td style="text-align: left;">
-            <strong>Порядок поддержания готовности</strong>
-          </td>
-          <td style="text-align: left;">Периодичность учений (не реже 1 раза в год). Критерии успешности. Порядок документирования итогов. Процедура корректирующих мероприятий.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">7</td>
-          <td style="text-align: left;">
-            <strong>Ссылки на DRP-планы</strong>
-          </td>
-          <td style="text-align: left;">Перечень всех DRP-планов с гиперссылками и указанием ответственных Менеджеров сервисов.</td>
-          <td style="text-align: left;">Менеджер процесса</td>
-        </tr>
-      </tbody>
-    </table>
-    <h3>2. Отличие ОНиВД от DRP</h3>
-    <table class="wrapped relative-table" style="width: 100.0%;">
-      <colgroup> <col style="width: 25.0%;"/> <col style="width: 37.5%;"/> <col style="width: 37.5%;"/> </colgroup>
-      <thead>
-        <tr style="background-color: rgb(244,245,247);">
-          <th style="text-align: left;">Параметр</th>
-          <th style="text-align: left;">ОНиВД (BCP)</th>
-          <th style="text-align: left;">DRP</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="text-align: left;">Уровень</td>
-          <td style="text-align: left;">Стратегический и тактический</td>
-          <td style="text-align: left;">Технический и операционный</td>
-        </tr>
-        <tr>
-          <td style="text-align: left;">Фокус</td>
-          <td style="text-align: left;">Бизнес-процессы: как организация продолжает работать</td>
-          <td style="text-align: left;">ИТ-инфраструктура: как восстановить конкретный сервис</td>
-        </tr>
-        <tr>
-          <td style="text-align: left;">Количество</td>
-          <td style="text-align: left;">Один на организацию / ДЗО</td>
-          <td style="text-align: left;">По одному на каждый критичный ИТ-сервис</td>
-        </tr>
-        <tr>
-          <td style="text-align: left;">Разрабатывает</td>
-          <td style="text-align: left;">Менеджер процесса непрерывности</td>
-          <td style="text-align: left;">Менеджер сервиса</td>
-        </tr>
-        <tr>
-          <td style="text-align: left;">Утверждает</td>
-          <td style="text-align: left;">Владелец процесса / Директор по ИТ</td>
-          <td style="text-align: left;">Менеджер процесса / CAB (при необходимости)</td>
-        </tr>
-        <tr>
-          <td style="text-align: left;">Основной вопрос</td>
-          <td style="text-align: left;">«Как мы будем обслуживать клиентов, если ЦОД недоступен?»</td>
-          <td style="text-align: left;">«Как восстановить почтовый сервер за 1 час после отказа ЦОД?»</td>
-        </tr>
-      </tbody>
-    </table>
-  </ac:rich-text-body>
-</ac:structured-macro>
-<ac:structured-macro ac:macro-id="drp-content-block" ac:name="expand" ac:schema-version="1">
-  <ac:parameter ac:name="title">Состав и требования к содержанию DRP-плана</ac:parameter>
-  <ac:rich-text-body>
-    <p>План аварийного восстановления (DRP) — это технический документ, определяющий пошаговые процедуры восстановления <strong>конкретного ИТ-сервиса</strong> после катастрофы. Разрабатывается <strong>для каждого</strong> ИТ-сервиса, удовлетворяющего критериям обязательности DRP.</p>
-    <h3>1. Обязательные разделы DRP-плана</h3>
-    <p>Структура DRP-плана должна соответствовать утверждённому шаблону. Допускается добавление дополнительных разделов, специфичных для конкретного ИТ-сервиса.</p>
-    <table class="wrapped relative-table" style="width: 100.0%;">
-      <colgroup> <col style="width: 5.0%;"/> <col style="width: 25.0%;"/> <col style="width: 45.0%;"/> <col style="width: 25.0%;"/> </colgroup>
-      <thead>
-        <tr style="background-color: rgb(244,245,247);">
-          <th style="text-align: center;">№</th>
-          <th style="text-align: left;">Раздел</th>
-          <th style="text-align: left;">Содержание</th>
-          <th style="text-align: left;">Ответственный</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="text-align: center;">1</td>
-          <td style="text-align: left;">
-            <strong>Объекты</strong>
-          </td>
-          <td style="text-align: left;">Перечень компонентов ИТ-сервиса с указанием модели облачного сервиса (IaaS/PaaS), отказоустойчивости и способа резервного копирования.</td>
-          <td style="text-align: left;">Технический специалист</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">2</td>
-          <td style="text-align: left;">
-            <strong>Режим работы и целевые показатели восстановления</strong>
-          </td>
-          <td style="text-align: left;">Режим работы системы (24/7, 9-18). RTO, RPO, MTPD. Рассчитываются по методике раздела «Критерии и правила расчёта RTO и RPO».</td>
-          <td style="text-align: left;">Менеджер сервиса</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">3</td>
-          <td style="text-align: left;">
-            <strong>Основание для активации DRP</strong>
-          </td>
-          <td style="text-align: left;">Кто принимает решение об активации. Условия активации. Порядок эскалации. Ссылка на План ОНиВД.</td>
-          <td style="text-align: left;">Менеджер сервиса</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">4</td>
-          <td style="text-align: left;">
-            <strong>Перечень уведомляемых лиц</strong>
-          </td>
-          <td style="text-align: left;">Список сотрудников, которых необходимо уведомить об аварии (роль, контакты).</td>
-          <td style="text-align: left;">Менеджер сервиса</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">5</td>
-          <td style="text-align: left;">
-            <strong>Команда восстановления</strong>
-          </td>
-          <td style="text-align: left;">Список участников с ролями и контактами. Обязательно указание <strong>DRP Commander</strong> — руководителя восстановительных работ.</td>
-          <td style="text-align: left;">Менеджер сервиса</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">6</td>
-          <td style="text-align: left;">
-            <strong>Способы резервирования</strong>
-          </td>
-          <td style="text-align: left;">Описание: что копируется, периодичность (привязана к RPO), место хранения, процедура проверки целостности.</td>
-          <td style="text-align: left;">Технический специалист</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">7</td>
-          <td style="text-align: left;">
-            <strong>Сценарии потери работоспособности</strong>
-          </td>
-          <td style="text-align: left;">Матрица сценариев с указанием применимости для каждого класса критичности. Сценарий «Полная потеря основной площадки (ЦОД)» обязателен.</td>
-          <td style="text-align: left;">Менеджер сервиса</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">8</td>
-          <td style="text-align: left;">
-            <strong>Действия по сценариям</strong>
-          </td>
-          <td style="text-align: left;">Пошаговые таблицы для каждого сценария: №, действие, исполнитель, срок. Каждый сценарий завершается верификацией восстановления.</td>
-          <td style="text-align: left;">Технический специалист</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">9</td>
-          <td style="text-align: left;">
-            <strong>Дополнительно</strong>
-          </td>
-          <td style="text-align: left;">Ссылки на инструкции по бэкапу, DRP смежных систем, внешние инструкции вендоров.</td>
-          <td style="text-align: left;">Технический специалист</td>
-        </tr>
-        <tr>
-          <td style="text-align: center;">10</td>
-          <td style="text-align: left;">
-            <strong>История изменений</strong>
-          </td>
-          <td style="text-align: left;">Таблица версий: дата, автор, описание изменений.</td>
-          <td style="text-align: left;">Менеджер сервиса</td>
-        </tr>
-      </tbody>
-    </table>
-    <h3>2. Требования к процедурам восстановления (раздел 5 DRP)</h3>
-    <p>Процедуры восстановления должны быть:</p>
-    <ul>
-      <li>
-        <strong>Пошаговыми:</strong> каждый шаг описывает конкретное действие, которое можно выполнить без дополнительных разъяснений.</li>
-      <li>
-        <strong>Проверяемыми:</strong> для каждого шага указан ожидаемый результат и способ его проверки.</li>
-      <li>
-        <strong>Хронометрируемыми:</strong> для каждого шага указано ориентировочное время выполнения (используется при учениях для оценки достижимости RTO).</li>
-      <li>
-        <strong>Независимыми от исполнителя:</strong> любой участник восстановительной команды с соответствующими правами доступа должен суметь выполнить процедуру.</li>
-    </ul>
-    <h3>3. Привязка DRP к Плану ОНиВД</h3>
-    <p>Каждый DRP-план является приложением к Плану ОНиВД. В Плане ОНиВД (раздел 7) содержится перечень всех DRP-планов с гиперссылками. При актуализации DRP Менеджер сервиса уведомляет Менеджера процесса для проверки актуальности ссылок в ОНиВД.</p>
-    <h3>4. Шаблон DRP</h3>
-    <p>Полный шаблон DRP-плана с предзаполненной структурой приведён в <strong>Приложении 1</strong> к настоящему Регламенту.</p>
-  </ac:rich-text-body>
-</ac:structured-macro>
 <ac:structured-macro ac:macro-id="256c32c9-2bc4-4bfa-8221-a534b93d3f8b" ac:name="expand" ac:schema-version="1">
   <ac:parameter ac:name="title">Требования к резервному копированию</ac:parameter>
   <ac:rich-text-body>
@@ -2340,7 +3568,7 @@
           <td style="text-align: left;">
             <strong>Горячий резерв (Active-Active)</strong>
           </td>
-          <td style="text-align: left;">Две площадки работают одновременно, нагрузка распределена. При отказе одной — трафик переключается на вторую автоматически. Требует синхронной репликации и балансировщиков.</td>
+          <td style="text-align: left;">Две Зоны доступности работают одновременно, нагрузка распределена. При отказе одной — трафик переключается на вторую автоматически. Требует синхронной репликации и балансировщиков.</td>
           <td style="text-align: left;">≤ 1 минута</td>
           <td style="text-align: left;">Mission Critical</td>
         </tr>
@@ -2348,7 +3576,7 @@
           <td style="text-align: left;">
             <strong>Тёплый резерв (Active-Passive)</strong>
           </td>
-          <td style="text-align: left;">Основная площадка активна, резервная — в режиме ожидания. Данные реплицируются асинхронно. При отказе — ручная или автоматическая активация резервной площадки. Требует репликации и процедур активации.</td>
+          <td style="text-align: left;">Основная Зона доступности активна, резервная — в режиме ожидания. Данные реплицируются асинхронно. При отказе — ручная или автоматическая активация резервной площадки. Требует репликации и процедур активации.</td>
           <td style="text-align: left;">≤ 1 часа</td>
           <td style="text-align: left;">Business Critical</td>
         </tr>
@@ -2375,7 +3603,7 @@
       <li>Определить класс критичности сервиса (из CMDB).</li>
       <li>Определить целевой RTO (из согласования с бизнесом, см. раздел «Критерии и правила расчёта RTO и RPO»).</li>
       <li>Выбрать паттерн, достижимый RTO которого ≤ целевого RTO.</li>
-      <li>Если стоимость выбранного паттерна превышает бюджет — эскалация на Архитектора ИТ и Владельца процесса. Варианты: пересмотр RTO с бизнесом, регистрация риска в Реестре рисков непрерывности, поэтапная модернизация.</li>
+      <li>Если стоимость выбранного паттерна превышает бюджет — эскалация на ИТ ИТ Архитектора ИТ и Владельца процесса. Варианты: пересмотр RTO с бизнесом, регистрация риска в Реестре рисков непрерывности, поэтапная модернизация.</li>
     </ol>
     <h3>2. Классификация резервируемых сущностей</h3>
     <table class="wrapped relative-table" style="width: 100.0%;">
@@ -2634,9 +3862,9 @@
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: left;">Расстояние между ЦОД</td>
-          <td style="text-align: left;">≥ 300 км</td>
-          <td style="text-align: left;">≥ 100 км (рекомендовано)</td>
+          <td style="text-align: left;">Количество зон доступности</td>
+          <td style="text-align: left;">Минимум 3</td>
+          <td style="text-align: left;">Минимум 2</td>
         </tr>
         <tr>
           <td style="text-align: left;">Способ репликации</td>
@@ -2655,11 +3883,125 @@
         </tr>
       </tbody>
     </table>
+    <h4>7.1. Предотвращение Split-Brain при георезервировании</h4>
+    <p>Для систем класса Mission Critical с активным или полуактивным георезервированием (Active-Active / Active-Passive) существует критический архитектурный риск — <strong>Split-Brain</strong> (ситуация, когда обе Зоны доступности изолируются друг от друга, считают себя активными и начинают одновременно записывать данные, порождая рассинхронизацию). Настоящий раздел определяет обязательные меры предотвращения и процедуры разрешения Split-Brain.</p>
+    <h4>7.1.1. Обязательные механизмы предотвращения</h4>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 25.0%;"/> <col style="width: 40.0%;"/> <col style="width: 35.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: left;">Механизм</th>
+          <th style="text-align: left;">Описание</th>
+          <th style="text-align: left;">Применимость</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left;">
+            <strong>Witness / Arbiter Node (Кворум)</strong>
+          </td>
+          <td style="text-align: left;">Третья, независимая нода (физическая или облачная), которая участвует в голосовании при потере связи между Зонами. Зона, потерявшая связь с Witness, автоматически переводится в режим «только чтение» или останавливает запись.</td>
+          <td style="text-align: left;">Обязательно для Mission Critical с Active-Active</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">
+            <strong>Fencing (Изоляция)</strong>
+          </td>
+          <td style="text-align: left;">Механизм принудительной изоляции «потерянной» Зоны доступности: отключение сетевых интерфейсов, остановка СУБД, снятие IP-адресов. Выполняется автоматически при обнаружении Split-Brain.</td>
+          <td style="text-align: left;">Обязательно для Mission Critical. Рекомендовано для Business Critical.</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">
+            <strong>Quorum-based Replication</strong>
+          </td>
+          <td style="text-align: left;">Репликация данных, при которой запись подтверждается только при получении подтверждения от большинства узлов (quorum). При Split-Brain ни одна из сторон не может достичь кворума самостоятельно — запись прекращается.</td>
+          <td style="text-align: left;">Обязательно для СУБД класса Mission Critical</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>7.1.2. Процедуры разрешения Split-Brain</h4>
+    <p>DRP-план каждого критичного сервиса с георезервированием должен содержать пошаговые процедуры разрешения Split-Brain. Процедуры включают:</p>
+    <ol>
+      <li>
+        <strong>Обнаружение:</strong> Система мониторинга фиксирует потерю связи между Зонами доступности и/или отсутствие кворума. Алерт уровня «Critical» направляется Координатору DRP.</li>
+      <li>
+        <strong>Оценка состояния:</strong> Координатор DRP определяет, какая из Зон доступности содержит наиболее актуальные данные (по номеру последней транзакции, временной метке репликации).</li>
+      <li>
+        <strong>Выбор источника истины (Source of Truth):</strong> Решение о том, какая Зона доступности становится источником истины, принимается Координатор DRP'ом совместно с ИТ ИТ Архитектором сервиса. Критерии: актуальность данных, доступность ресурсов, время восстановления.</li>
+      <li>
+        <strong>Изоляция проигравшей Зоны:</strong> Проигравшая Зона доступности принудительно изолируется (Fencing) до полного разрешения конфликта.</li>
+      <li>
+        <strong>Разрешение конфликтов данных:</strong> После восстановления связи выполняется процедура разрешения конфликтов:<ul>
+          <li>Для СУБД: использование встроенных механизмов (CRDT, Last-Write-Wins) или ручное разрешение конфликтов администратором БД.</li>
+          <li>Для файловых хранилищ: сравнение контрольных сумм, восстановление из бэкапа проигравшей стороны.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Восстановление репликации:</strong> После разрешения конфликтов репликация восстанавливается. Проигравшая Зона доступности синхронизируется с источником истины.</li>
+    </ol>
+    <h4>7.1.3. Тестирование Split-Brain сценария</h4>
+    <ul>
+      <li>Сценарий Split-Brain включается в план учений (Этап 3) для всех систем с георезервированием.</li>
+      <li>Тестирование проводится не реже одного раза в год для Mission Critical систем.</li>
+      <li>Результаты тестирования фиксируются в протоколе учений. При выявлении отклонений — корректирующие мероприятия (шаг 3.4).</li>
+    </ul>
     <p>
       <br/>
     </p>
-    <h3>8. Требования информационной безопасности к резервному копированию</h3>
-    <h4>8.1. Шифрование резервных копий</h4>
+    <h3>8. Защита резервных копий от шифровальщиков (Ransomware Protection)</h3>
+    <p>Настоящий раздел определяет обязательные меры защиты от возможности шифрования резервных копий злоумышленниками</p>
+    <h4>8.1. Изолированный логический контур (Air-Gapped / Vault)</h4>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 25.0%;"/> <col style="width: 35.0%;"/> <col style="width: 40.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: left;">Класс критичности</th>
+          <th style="text-align: left;">Требование к изоляции</th>
+          <th style="text-align: left;">Примечание</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left;">
+            <strong>Mission Critical</strong>
+          </td>
+          <td style="text-align: left;">Обязательно. Резервные копии хранятся в изолированном логическом контуре (Air-Gapped Backup / Immutable Vault). Физический или логический разрыв с продуктивной сетью. Невозможность удаления или модификации бэкапов из продуктивной среды.</td>
+          <td style="text-align: left;">Реализация: Immutable-бэкапы (WORM — Write Once, Read Many), отдельный backup-аккаунт в облаке с блокировкой удаления.</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">
+            <strong>Business Critical</strong>
+          </td>
+          <td style="text-align: left;">Рекомендовано. При отсутствии — риск регистрируется в Реестре рисков непрерывности.</td>
+          <td style="text-align: left;">Минимально: отдельный VLAN с жёсткими правилами firewall.</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">
+            <strong>Business Operational</strong>
+          </td>
+          <td style="text-align: left;">Рекомендовано. Минимально: хранение бэкапов на отдельном оборудовании, не входящем в общий домен AD.</td>
+          <td style="text-align: left;">—</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>8.2. Изоляция учётных записей администраторов резервного копирования</h4>
+    <ul>
+      <li>Учётные записи администраторов систем резервного копирования <strong>не должны</strong> состоять в общем домене Active Directory.</li>
+      <li>Доступ к управлению бэкапами осуществляется через выделенный канал управления (Out-of-Band Management) или через PAM-систему с отдельным каталогом учётных записей.</li>
+      <li>Права на удаление резервных копий предоставляются только ограниченному кругу лиц и требуют дополнительного подтверждения (двухфакторная авторизация, break-glass-процедура).</li>
+    </ul>
+    <h4>8.3. Проверка резервных копий на вредоносное ПО</h4>
+    <p>Восстановление из бэкапа, который уже содержит внедрённое вредоносное ПО (закладочную малварь), приводит к повторной компрометации. При тестовом восстановлении (раздел 5 блока «Требования к резервному копированию») обязательно:</p>
+    <ul>
+      <li>
+        <strong>Антивирусное сканирование:</strong> Развёрнутая из бэкапа тестовая среда подлежит обязательному сканированию согласованными средствами КБ (антивирус, EDR, песочница) до подключения к сети.</li>
+      <li>
+        <strong>Проверка целостности:</strong> Сравнение контрольных сумм критичных файлов (системные библиотеки, конфигурации) с эталонными значениями, сохранёнными отдельно от бэкапов.</li>
+      <li>
+        <strong>Изолированная песочница (Sandbox):</strong> Тестовое восстановление Mission Critical систем выполняется в изолированной сетевой среде без доступа к продуктивной сети до полного завершения сканирования.</li>
+    </ul>
+    <h3>9. Требования информационной безопасности к резервному копированию</h3>
+    <h4>9.1. Шифрование резервных копий</h4>
     <table class="wrapped relative-table" style="width: 100.0%;">
       <colgroup> <col style="width: 25.0%;"/> <col style="width: 35.0%;"/> <col style="width: 40.0%;"/> </colgroup>
       <thead>
@@ -2687,30 +4029,174 @@
         </tr>
       </tbody>
     </table>
-    <h4>8.2. Контроль доступа к резервным копиям</h4>
+    <h4>9.2. Контроль доступа к резервным копиям</h4>
     <ul>
       <li>Доступ — только авторизованному персоналу. Права пересматриваются ежеквартально.</li>
       <li>
         <strong>Принцип разделения полномочий:</strong> создающий бэкап не имеет прав на удаление.</li>
       <li>Все операции (создание, восстановление, удаление) логируются. Логи защищены от модификации.</li>
     </ul>
-    <h4>8.3. Защита каналов передачи</h4>
+    <h4>9.3. Защита каналов передачи</h4>
     <ul>
-      <li>Передача между ЦОД — по защищённым каналам (VPN, TLS).</li>
+      <li>Передача между Зонами доступности — по защищённым каналам (VPN, TLS).</li>
       <li>Через публичные сети — обязательное шифрование канала.</li>
     </ul>
-    <h4>8.4. Уничтожение резервных копий</h4>
+    <h4>9.4. Уничтожение резервных копий</h4>
     <ul>
       <li>По истечении срока хранения — уничтожение без возможности восстановления (перезапись, криптографическое уничтожение ключей).</li>
       <li>Факт уничтожения фиксируется в логах. Для конфиденциальных данных — акт уничтожения (по требованию ДКБ).</li>
     </ul>
-    <h3>9. Критерии качества резервного копирования</h3>
+    <h3>10. Критерии качества резервного копирования</h3>
     <ul>
       <li>Для 100% критичных ИТ-сервисов (Mission Critical, Business Critical) настроено резервное копирование в соответствии с DRP-планом.</li>
       <li>100% созданных бэкапов прошли автоматическую верификацию (проверка хеша).</li>
       <li>Тестовое восстановление проведено для 100% Mission Critical сервисов в течение последнего квартала.</li>
       <li>Не зафиксировано случаев восстановления «поверх» продуктивных данных без предварительного снапшота.</li>
       <li>Сроки хранения бэкапов соответствуют таблице п. 4. Не зафиксировано преждевременного удаления.</li>
+    </ul>
+  </ac:rich-text-body>
+</ac:structured-macro>
+<ac:structured-macro ac:macro-id="threat-model-block-v2" ac:name="expand" ac:schema-version="1">
+  <ac:parameter ac:name="title">Состав и требования к содержанию Модели угроз непрерывности</ac:parameter>
+  <ac:rich-text-body>
+    <p>Модель угроз непрерывности — документ, определяющий перечень потенциальных угроз, которые могут привести к нарушению функционирования ИТ-сервисов, и возможные последствия их реализации. Модель угроз является основой для разработки DRP-планов и планирования учений. Разрабатывается <strong>одна</strong> на организацию (или ДЗО).</p>
+    <p>
+      <strong>Особенность:</strong> Настоящая Модель угроз учитывает облачную модель предоставления инфраструктуры (IaaS/PaaS) и отсутствие собственных физических ЦОД. Угрозы физического характера (пожар, наводнение, отказ системы охлаждения ЦОД) находятся в зоне ответственности облачного провайдера и не включаются в Модель угроз.</p>
+    <h3>1. Обязательные разделы Модели угроз</h3>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 5.0%;"/> <col style="width: 25.0%;"/> <col style="width: 45.0%;"/> <col style="width: 25.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: center;">№</th>
+          <th style="text-align: left;">Раздел</th>
+          <th style="text-align: left;">Содержание</th>
+          <th style="text-align: left;">Ответственный</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: center;">1</td>
+          <td style="text-align: left;">
+            <strong>Общие положения</strong>
+          </td>
+          <td style="text-align: left;">Цели документа, основание для разработки, охват (на какие ИТ-сервисы и облачные ресурсы распространяется). Указание облачного провайдера (Cloud.ru) и его зоны ответственности. Ссылки на нормативные документы и SLA провайдера.</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">2</td>
+          <td style="text-align: left;">
+            <strong>Классификация угроз</strong>
+          </td>
+          <td style="text-align: left;">Структурированный перечень угроз, актуальных для облачной инфраструктуры:<ul>
+              <li>
+                <strong>Отказ облачной платформы:</strong> полная или частичная недоступность облачного провайдера, включая отказ API управления, отказ вычислительных ресурсов (ECS), отказ СУБД (RDS), отказ объектного хранилища (OBS), отказ балансировщиков (ELB).</li>
+              <li>
+                <strong>Деградация сетевой связности:</strong> обрыв VPN-каналов до облачного провайдера, DDoS-атака на внешние интерфейсы, проблемы с DNS-резолвингом.</li>
+              <li>
+                <strong>Кибератаки:</strong> ransomware, wiper, компрометация привилегированных учётных записей (включая учётные записи облачного провайдера), эксплуатация уязвимостей в опубликованных сервисах.</li>
+              <li>
+                <strong>Ошибки конфигурации и человеческий фактор:</strong> случайное удаление ресурсов через API облачного провайдера, ошибки в Terraform/Ansible-конфигурациях, некорректное изменение правил firewall.</li>
+              <li>
+                <strong>Потеря доступа к облачной платформе:</strong> компрометация или отзыв учётной записи администратора облака, блокировка аккаунта провайдером (в т.ч. по финансовым причинам), потеря доступа к MFA.</li>
+            </ul>
+          </td>
+          <td style="text-align: left;">Менеджер процесса / CISO</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">3</td>
+          <td style="text-align: left;">
+            <strong>Оценка влияния угроз</strong>
+          </td>
+          <td style="text-align: left;">Для каждой угрозы определяется:<ul>
+              <li>Вероятность реализации (низкая / средняя / высокая).</li>
+              <li>Потенциальное влияние на ИТ-сервисы (критичное / высокое / среднее / низкое).</li>
+              <li>Затрагиваемые классы критичности (Mission Critical / Business Critical / Business Operational / Office Production).</li>
+              <li>Наличие компенсационных мер у облачного провайдера (SLA, репликация, резервный регион).</li>
+            </ul>
+          </td>
+          <td style="text-align: left;">Менеджер процесса / ИТ Архитектор</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">4</td>
+          <td style="text-align: left;">
+            <strong>Сценарии ЧС</strong>
+          </td>
+          <td style="text-align: left;">Типовые сценарии ЧС, вытекающие из модели угроз. Для каждого сценария указано, является ли он зоной ответственности Компании или облачного провайдера:<ul>
+              <li>
+                <strong>Сценарий 1 (провайдер):</strong> Полная потеря облачной платформы (основного региона).</li>
+              <li>
+                <strong>Сценарий 2 (провайдер):</strong> Отказ компонентов облачной платформы — вычислительных ресурсов (ECS), СУБД (RDS), объектного хранилища (OBS).</li>
+              <li>
+                <strong>Сценарий 3 (Компания):</strong> Отказ виртуальных серверов — полный или частичный.</li>
+              <li>
+                <strong>Сценарий 4 (Компания):</strong> Отказ системы аутентификации (Active Directory / SSO).</li>
+              <li>
+                <strong>Сценарий 5 (Компания):</strong> Потеря данных в результате аварии в системе хранения данных.</li>
+              <li>
+                <strong>Сценарий 6 (Компания):</strong> Компрометация привилегированных учётных записей.</li>
+              <li>
+                <strong>Сценарий 7 (Компания):</strong> DDoS-атака на опубликованные системы.</li>
+              <li>
+                <strong>Сценарий 8 (Компания):</strong> Деградация инфраструктуры в процессе кибератаки.</li>
+              <li>
+                <strong>Сценарий 9 (Компания):</strong> Потеря доступа к облачной платформе (компрометация учётной записи администратора облака, отзыв лицензий, блокировка аккаунта).</li>
+            </ul>
+          </td>
+          <td style="text-align: left;">Менеджер процесса</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">5</td>
+          <td style="text-align: left;">
+            <strong>Привязка угроз к сценариям DRP</strong>
+          </td>
+          <td style="text-align: left;">Матрица «Угроза → Сценарий ЧС → DRP-план». Для каждого сценария указывается, DRP каких ИТ-сервисов должны быть активированы. Для сценариев в зоне ответственности провайдера указываются процедуры эскалации и контроль SLA провайдера.</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">6</td>
+          <td style="text-align: left;">
+            <strong>Матрица ответственности провайдера и Компании</strong>
+          </td>
+          <td style="text-align: left;">Таблица, разграничивающая зоны ответственности:<ul>
+              <li>Физическая безопасность ЦОД — провайдер.</li>
+              <li>Доступность облачной платформы — провайдер (по SLA).</li>
+              <li>Резервное копирование на уровне платформы (RDS, OBS) — провайдер.</li>
+              <li>Конфигурация виртуальных серверов (ECS) — Компания.</li>
+              <li>Сетевая связность между регионом провайдера и офисом Компании — совместная (VPN-канал).</li>
+              <li>Безопасность учётных записей облачного провайдера — Компания.</li>
+            </ul>
+          </td>
+          <td style="text-align: left;">Менеджер процесса / ИТ Архитектор</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">7</td>
+          <td style="text-align: left;">
+            <strong>Утверждение</strong>
+          </td>
+          <td style="text-align: left;">Подписи: СТО (Директор по ИТ) — утверждает, CISO — согласовывает (в части киберугроз).</td>
+          <td style="text-align: left;">СТО / CISO</td>
+        </tr>
+        <tr>
+          <td style="text-align: center;">8</td>
+          <td style="text-align: left;">
+            <strong>История изменений</strong>
+          </td>
+          <td style="text-align: left;">Таблица версий: дата, автор, описание изменений.</td>
+          <td style="text-align: left;">Менеджер процесса</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3>2. Требования к актуализации</h3>
+    <ul>
+      <li>Модель угроз актуализируется <strong>ежегодно</strong> (шаг 1.1). Утверждается не позднее 31 января текущего года.</li>
+      <li>Внеплановая актуализация — при появлении нового типа угроз, не предусмотренного текущей моделью (например, новый тип кибератак, выявленный SOC).</li>
+      <li>Внеплановая актуализация — при существенном архитектурном изменении (см. Этап 4), которое вводит новые уязвимости или устраняет существующие.</li>
+      <li>Внеплановая актуализация — при смене облачного провайдера или изменении его SLA.</li>
+    </ul>
+    <h3>3. Обязательные требования</h3>
+    <ul>
+      <li>Модель угроз <strong>обязательно</strong> включает угрозу полной потери основной площадки (облачного региона).</li>
+      <li>Модель угроз <strong>обязательно</strong> включает Матрицу ответственности провайдера и Компании.</li>
     </ul>
   </ac:rich-text-body>
 </ac:structured-macro>
@@ -2829,7 +4315,7 @@
         <tr>
           <td style="text-align: left;">Владелец риска</td>
           <td style="text-align: left;">Роль или ФИО, ответственные за управление риском</td>
-          <td style="text-align: left;">Менеджер сервиса, Директор по ИТ</td>
+          <td style="text-align: left;">Владелец АС, Директор по ИТ</td>
         </tr>
         <tr>
           <td style="text-align: left;">План митигации</td>
@@ -2866,17 +4352,17 @@
       <tbody>
         <tr>
           <td style="text-align: left;">
-            <strong>Менеджер сервиса</strong>
+            <strong>Владелец АС</strong>
           </td>
           <td style="text-align: left;">Идентификация и первичная регистрация риска. Предложение плана митигации.</td>
           <td style="text-align: left;">Заводит запись о риске. Согласовывает с Менеджером процесса.</td>
         </tr>
         <tr>
           <td style="text-align: left;">
-            <strong>Менеджер процесса</strong>
+            <strong>Владелец АС</strong>
           </td>
           <td style="text-align: left;">Ведение Реестра рисков непрерывности. Контроль сроков митигации. Ежемесячный мониторинг.</td>
-          <td style="text-align: left;">Принимает/отклоняет риск. Эскалирует просроченные риски на Владельца процесса. Выносит статус рисков на Архитектурно-процессный комитет.</td>
+          <td style="text-align: left;">Принимает/отклоняет риск. Эскалирует просроченные риски на Владельца процесса. Выносит статус рисков на Архитектурный комитет.</td>
         </tr>
         <tr>
           <td style="text-align: left;">
@@ -2896,21 +4382,84 @@
     </table>
     <h3>5. Периодичность пересмотра рисков</h3>
     <ul>
-      <li>Каждый риск пересматривается <strong>не реже 1 раза в квартал</strong>. Менеджер сервиса актуализирует: статус, остаточные показатели, план митигации, сроки.</li>
-      <li>При наступлении срока митигации Менеджер процесса проверяет факт выполнения мероприятий. Если мероприятия не выполнены — риск остаётся активным, фиксируется причина просрочки.</li>
+      <li>Каждый риск пересматривается <strong>не реже 1 раза в квартал</strong>. Владелец АС актуализирует: статус, остаточные показатели, план митигации, сроки.</li>
+      <li>При наступлении срока митигации Владелец АС проверяет факт выполнения мероприятий. Если мероприятия не выполнены — риск остаётся активным, фиксируется причина просрочки.</li>
       <li>Риск переводится в статус «Митигирован» после подтверждения, что целевые показатели (RTO/RPO) достигнуты. Подтверждение — результат учений или тестового восстановления.</li>
       <li>Риск переводится в статус «Принят (Accepted)» только Владельцем процесса. Это означает, что организация осознанно принимает данный уровень риска без дальнейших попыток митигации.</li>
     </ul>
-    <h3>6. Связь с корпоративным Реестром рисков</h3>
+    <h3>6. Архитектурный долг непрерывности</h3>
+    <p>Риски непрерывности, связанные с отсутствием резервирования или несоответствием архитектурным паттернам, классифицируются как <strong>архитектурный долг (Architecture Debt)</strong>. Такие риски требуют не просто регистрации, но и назначенного срока устранения (target remediation date) или обоснованного бизнес-решения о постоянном исключении.</p>
+    <h4>6.1. Критерии отнесения к архитектурному долгу</h4>
+    <p>Риск непрерывности признаётся архитектурным долгом при выполнении любого из следующих условий:</p>
+    <ul>
+      <li>Отсутствие георезервирования для сервиса класса Mission Critical.</li>
+      <li>Отсутствие георезервирования для сервиса класса Business Critical (если не оформлено постоянное исключение).</li>
+      <li>Использование паттерна «Холодный резерв» для сервиса, требующего RTO ≤ 1 часа.</li>
+      <li>Отсутствие изолированного контура бэкапов (Air-Gapped / Immutable Vault) для Mission Critical.</li>
+      <li>Несоответствие текущего паттерна резервирования целевому, зафиксированному в Архитектурном реестре.</li>
+    </ul>
+    <h4>6.2. Обязательные атрибуты архитектурного долга</h4>
+    <p>В дополнение к атрибутам, перечисленным в разделе 3, запись об архитектурном долге содержит:</p>
+    <table class="wrapped relative-table" style="width: 100.0%;">
+      <colgroup> <col style="width: 25.0%;"/> <col style="width: 40.0%;"/> <col style="width: 35.0%;"/> </colgroup>
+      <thead>
+        <tr style="background-color: rgb(244,245,247);">
+          <th style="text-align: left;">Атрибут</th>
+          <th style="text-align: left;">Описание</th>
+          <th style="text-align: left;">Пример</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align: left;">Целевой срок устранения</td>
+          <td style="text-align: left;">Дата, к которой архитектурный долг должен быть устранён. Устанавливается ИТ ИТ Архитектором ИТ по согласованию с Владельцем сервиса.</td>
+          <td style="text-align: left;">31.12.2026</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Остаточный риск (Accepted Risk)</td>
+          <td style="text-align: left;">Если долг не может быть устранён в принципе (например, бюджетное ограничение) — статус «Постоянное исключение». Утверждается Владельцем процесса.</td>
+          <td style="text-align: left;">Постоянное исключение (бюджет)</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">План митигации</td>
+          <td style="text-align: left;">Поэтапный план устранения: закупка, внедрение, тестирование.</td>
+          <td style="text-align: left;">Q1: закупка лицензий, Q2: настройка standby</td>
+        </tr>
+        <tr>
+          <td style="text-align: left;">Дата ближайшего ревью</td>
+          <td style="text-align: left;">Дата, на которую назначен пересмотр статуса долга на Архитектурно-процессном комитете.</td>
+          <td style="text-align: left;">01.07.2026</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>6.3. Порядок работы с архитектурным долгом</h4>
+    <ol>
+      <li>
+        <strong>Выявление:</strong> Владелец АС или ИТ ИТ Архитектор при анализе DRP (шаг 2.1) или по итогам учений (шаг 3.3) выявляет несоответствие и регистрирует риск с признаком «Архитектурный долг».</li>
+      <li>
+        <strong>Оценка:</strong> ИТ ИТ Архитектор ИТ оценивает стоимость и сроки устранения. Владелец сервиса подтверждает или отклоняет предложенный план.</li>
+      <li>
+        <strong>Утверждение:</strong> Архитектурно-процессный комитет (ежемесячно) рассматривает реестр архитектурных долгов. Для каждого долга принимается одно из решений:<ul>
+          <li>Утвердить план устранения с целевым сроком.</li>
+          <li>Признать постоянным исключением (Accepted Risk) — только с обоснованием Владельца процесса.</li>
+          <li>Отправить на доработку плана митигации.</li>
+        </ul>
+      </li>
+      <li>
+        <strong>Контроль:</strong> Владелец АС ежемесячно отслеживает статус архитектурных долгов. Долги с истекшим целевым сроком эскалируются на Владельца процесса.</li>
+    </ol>
+    <h4>6.4. Периодичность ревью</h4>
+    <p>Архитектурный комитет пересматривает Реестр архитектурных долгов непрерывности <strong>не реже одного раза в полгода</strong>. Внеплановый пересмотр — при существенном архитектурном изменении (см. Этап 4).</p>
+    <h3>7. Связь с корпоративным Реестром рисков</h3>
     <p>Реестр рисков непрерывности может быть реализован как:</p>
     <ul>
       <li>
-        <strong>Самостоятельный документ</strong> (в ITSM-системе или Confluence) — с обязательной выгрузкой критичных рисков в корпоративный Реестр рисков.</li>
+        <strong>Самостоятельный документ</strong> (в ITSM-системе или Базе знаний) — с обязательной выгрузкой критичных рисков в корпоративный Реестр рисков.</li>
       <li>
         <strong>Подмножество корпоративного Реестра рисков</strong> — с обязательной маркировкой тегом «Непрерывность» для фильтрации и отчётности.</li>
     </ul>
-    <p>При любом варианте реализации Менеджер процесса обеспечивает синхронизацию данных между Реестром рисков непрерывности и корпоративным Реестром рисков не реже 1 раза в квартал.</p>
-    <h3>7. Критерии качества управления рисками непрерывности</h3>
+    <p>При любом варианте реализации Владелец АС обеспечивает синхронизацию данных между Реестром рисков непрерывности и корпоративным Реестром рисков не реже 1 раза в квартал.</p>
+    <h3>8. Критерии качества управления рисками непрерывности</h3>
     <ul>
       <li>100% рисков, зарегистрированных по триггерам п. 2, имеют заполненные обязательные атрибуты (п. 3).</li>
       <li>100% рисков пересмотрены в течение последнего квартала.</li>
@@ -2962,14 +4511,14 @@
           <td>Акцепт решений об активизации резервных рабочих мест в случае ЧС. Контроль исполнения решений.</td>
         </tr>
         <tr>
-          <td>Менеджер сервиса</td>
+          <td>Владелец АС</td>
           <td>
             <br/>
           </td>
           <td>Принятие решений об активизации резервных рабочих мест. Организация исполнения решений.</td>
         </tr>
         <tr>
-          <td>DRP Commander</td>
+          <td>Координатор DRP</td>
           <td>
             <br/>
           </td>
@@ -3041,7 +4590,7 @@
     <h3>4. Процедуры восстановления</h3>
     <p>[Пошаговое описание процедур восстановления ИТ-сервиса]</p>
     <h3>5. Управление принятием решений</h3>
-    <p>В каждом конкретном случае ЧС решения о применении методов резервирования принимает Менеджер сервиса. Решения доводятся до директора. Получив акцепт, Менеджер сервиса приступает к организации исполнения решений в соответствии с Планом ОНиВД.</p>
+    <p>В каждом конкретном случае ЧС решения о применении методов резервирования принимает Владелец АС. Решения доводятся до директора. Получив акцепт, Владелец АС приступает к организации исполнения решений в соответствии с Планом ОНиВД.</p>
   </ac:rich-text-body>
 </ac:structured-macro>
 <ac:structured-macro ac:macro-id="appendix-backup-schedule" ac:name="expand" ac:schema-version="1">
